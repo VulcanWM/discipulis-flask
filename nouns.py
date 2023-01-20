@@ -1,9 +1,12 @@
 from vocab import nouns
 
-cases = ['nominative', 'vocative', 'accusative', 'genetive', 'dative', 'ablative']
+cases = ['nominative', 'vocative', 'accusative', 'genitive', 'dative', 'ablative']
 numbers = ['singular', 'plural']
 
-first_declension = ["a","a","am","ae","ae","a","ae","ae","as","arum","is","is"]
+first_declension = ["a", "a", "am", "ae", "ae", "a", "ae", "ae", "as", "arum", "is", "is"]
+second_declension_masc = ['us', 'e', 'um', 'i', 'o', 'o', 'i', 'i', 'os', 'orum', 'is', 'is']
+second_declension_masc_er = ['', '', 'um', 'i', 'o', 'o', 'i', 'i', 'os', 'orum', 'is', 'is']
+second_declension_neut = ['um', 'um', 'um', 'i', 'o', 'o', 'a', 'a', 'a', 'orum', 'is', 'is']
 
 def noun_english_to_latin(word, case, number):
     if case not in cases:
@@ -17,7 +20,19 @@ def noun_english_to_latin(word, case, number):
         index += 6
     latin_form = nouns[word]
     nominative = latin_form.split(",")[0]
-    genetive = latin_form.split(",")[1]
-    if genetive.endswith("ae"):
+    genitive = latin_form.split(",")[1]
+    if genitive.endswith("ae"):
+        # 1st declension
         latin_word = nominative[:-1] + first_declension[index]
+    if genitive.endswith("i"):
+        # 2nd declension
+        if nominative.endswith("us"):
+            # 2nd declension masculine normal
+            latin_word = nominative[:-2] + second_declension_masc[index]
+        if nominative.endswith("um"):
+            # 2nd declension neuter
+            latin_word = nominative[:-2] + second_declension_neut[index]
+        if nominative.endswith("er"):
+            # 2nd declension masculine other
+            latin_word = nominative + second_declension_masc_er[index]
     return latin_word

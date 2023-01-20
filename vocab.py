@@ -1,1 +1,1 @@
-nouns = {"girl":"puella, puellae, f."}
+nouns = {"girl": "puella,puellae,f.", "year": "annus,anni,m.", "boy": "puer,pueri,m.", "war": "bellum,belli,n."}

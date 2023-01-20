@@ -1,3 +1,6 @@
 from nouns import noun_english_to_latin
+from vocab import nouns
 
-print(noun_english_to_latin("girl", "nominative", "plural"))
+for noun in nouns.keys():
+    print(noun)
+    print(noun_english_to_latin(noun, "genitive", "plural"))
