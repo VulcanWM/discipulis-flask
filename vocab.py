@@ -5,5 +5,8 @@ nouns = {
     "war": "bellum,belli,n.",
     "man": "vir,viri,m.",
     "boy": "filius,filii,m.",
-    "god": "deus,dei,m."
+    "god": "deus,dei,m.",
+    "step": "gradus,-us,m.",
+    "knee": "genu,genus,n.",
+    "house": "domus,domus,m."
 }
