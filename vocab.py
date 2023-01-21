@@ -1,3 +1,8 @@
+numbers = ['singular', 'plural']
+cases = ['nominative', 'vocative', 'accusative', 'genitive', 'dative', 'ablative']
+persons = ['1st', '2nd', '3rd']
+tenses = ['present', 'future', 'imperfect', 'perfect']
+
 nouns = {
     "girl": "puella,puellae,f.",
     "year": "annus,anni,m.",
@@ -9,4 +14,8 @@ nouns = {
     "step": "gradus,-us,m.",
     "knee": "genu,genus,n.",
     "house": "domus,domus,m."
+}
+
+verbs = {
+    'love': 'amo,amare,amavi,amatum'
 }

@@ -1,7 +1,4 @@
-from vocab import nouns
-
-cases = ['nominative', 'vocative', 'accusative', 'genitive', 'dative', 'ablative']
-numbers = ['singular', 'plural']
+from vocab import nouns, numbers, cases
 
 first_declension = ["a", "a", "am", "ae", "ae", "a", "ae", "ae", "as", "arum", "is", "is"]
 second_declension_masc = ['us', 'e', 'um', 'i', 'o', 'o', 'i', 'i', 'os', 'orum', 'is', 'is']
