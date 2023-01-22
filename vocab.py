@@ -17,5 +17,6 @@ nouns = {
 }
 
 verbs = {
-    'love': 'amo,amare,amavi,amatum'
+    'love': 'amo,amare,amavi,amatum',
+    'warn': 'moneo,monere,monui,monitum'
 }
