@@ -3,19 +3,28 @@ from vocab import verbs, numbers, persons, tenses
 first_conjugation = {
     'present': ['o', 'as', 'at', 'amus', 'atis', 'ant'],
     'imperfect': ['abam', 'abas', 'abat', 'abamus', 'abatis', 'abant'],
-    'perfect': ['vi', 'visti', 'vit', 'vimus', 'vistis', 'verunt'],
+    'perfect': ['i', 'isti', 'it', 'imus', 'istis', 'erunt'],
     'future': ['abo', 'abis', 'abit', 'abimus', 'abitis', 'abunt'],
-    'future perfect': ['vero', 'veris', 'verit', 'verimus', 'veritis', 'verint'],
-    'pluperfect': ['veram', 'veras', 'verat', 'veramus', 'veratis', 'verant']
+    'future perfect': ['ero', 'eris', 'erit', 'erimus', 'eritis', 'erint'],
+    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant']
 }
 
 second_conjugation = {
     'present': ['o', 'es', 'et', 'emus', 'etis', 'ent'],
     'imperfect': ['ebam', 'ebas', 'ebat', 'ebamus', 'ebatis', 'ebant'],
-    'perfect': ['ui', 'uisti', 'uit', 'uimus', 'uistis', 'uerunt'],
+    'perfect': ['i', 'isti', 'it', 'imus', 'istis', 'erunt'],
     'future': ['ebo', 'ebis', 'ebit', 'ebimus', 'ebitis', 'ebunt'],
-    'future perfect': ['uero', 'ueris', 'uerit', 'uerimus', 'ueritis', 'uerint'],
-    'pluperfect': ['ueram', 'ueras', 'uerat', 'ueramus', 'ueratis', 'uerant']
+    'future perfect': ['ero', 'eris', 'erit', 'erimus', 'eritis', 'erint'],
+    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant']
+}
+
+third_conjugation = {
+    'present': ['o', 'is', 'it', 'imus', 'itis', 'unt'],
+    'imperfect': ['ebam', 'ebas', 'ebat', 'ebamus', 'ebatis', 'ebant'],
+    'perfect': ['i', 'isti', 'it', 'imus', 'istis', 'erunt'],
+    'future': ['am', 'es', 'et', 'emus', 'etis', 'ent'],
+    'future perfect': ['ero', 'eris', 'erit', 'erimus', 'eritis', 'erint'],
+    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant']
 }
 
 
@@ -31,20 +40,27 @@ def verb_english_to_latin(word, person, number, tense):
     latin_form = verbs[word]
     infinitive = latin_form.split(",")[1]
     perfect = latin_form.split(",")[2]
+    conjugation = latin_form.split(",")[4]
     index = persons.index(person)
     if number == "plural":
         index += 3
-    if infinitive.endswith("are"):
+    if conjugation == "1st":
         # 1st conjugation
         if "perfect" not in tense:
             latin_word = infinitive[:-3] + first_conjugation[tense][index]
         else:
-            latin_word = perfect[:-2] + first_conjugation[tense][index]
-    if infinitive.endswith("ere"):
+            latin_word = perfect[:-1] + first_conjugation[tense][index]
+    if conjugation == "2nd":
         # 2nd conjugation
         if "perfect" not in tense:
             latin_word = infinitive[:-3] + second_conjugation[tense][index]
         else:
-            latin_word = perfect[:-2] + second_conjugation[tense][index]
+            latin_word = perfect[:-1] + second_conjugation[tense][index]
+    if conjugation == "3rd":
+        # 3rd conjugation
+        if "perfect" not in tense:
+            latin_word = infinitive[:-3] + third_conjugation[tense][index]
+        else:
+            latin_word = perfect[:-1] + second_conjugation[tense][index]
     return latin_word
 

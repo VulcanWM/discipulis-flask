@@ -14,10 +14,12 @@ nouns = {
     "god": "deus,dei,m.",
     "step": "gradus,-us,m.",
     "knee": "genu,genus,n.",
-    "house": "domus,domus,m."
+    "house": "domus,domus,m.",
 }
 
 verbs = {
-    'love': 'amo,amare,amavi,amatum',
-    'warn': 'moneo,monere,monui,monitum'
+    'love': 'amo,amare,amavi,amatum,1st',
+    'warn': 'moneo,monere,monui,monitum,2nd',
+    'rule': 'rego,regere,rexi,rectus,3rd',
+    'climb': 'ascendo,ascendere,ascendi,ascensus,3rd'
 }
