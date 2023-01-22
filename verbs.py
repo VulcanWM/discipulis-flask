@@ -3,8 +3,15 @@ from vocab import verbs, numbers, persons, tenses
 first_conjugation = {
     'present': ['o', 'as', 'at', 'amus', 'atis', 'ant'],
     'imperfect': ['abam', 'abas', 'abat', 'abamus', 'abatis', 'abant'],
-    'perfect': ['i', 'isti', 'it', 'imus', 'istis', 'erunt'],
+    'perfect': ['vi', 'visti', 'vit', 'vimus', 'vistis', 'verunt'],
     'future': ['abo', 'abis', 'abit', 'abimus', 'abitis', 'abunt']
+}
+
+second_conjugation = {
+    'present': ['o', 'es', 'et', 'emus', 'etis', 'ent'],
+    'imperfect': ['ebam', 'ebas', 'ebat', 'ebamus', 'ebatis', 'ebant'],
+    'perfect': ['ui', 'uisti', 'uit', 'uimus', 'uistis', 'uerunt'],
+    'future': ['ebo', 'ebis', 'ebit', 'ebimus', 'ebitis', 'ebunt']
 }
 
 
@@ -28,6 +35,12 @@ def verb_english_to_latin(word, person, number, tense):
         if tense != "perfect":
             latin_word = infinitive[:-3] + first_conjugation[tense][index]
         else:
-            latin_word = perfect[:-1] + first_conjugation['perfect'][index]
+            latin_word = perfect[:-2] + first_conjugation['perfect'][index]
+    if infinitive.endswith("ere"):
+        # 2nd conjugation
+        if tense != "perfect":
+            latin_word = infinitive[:-3] + second_conjugation[tense][index]
+        else:
+            latin_word = perfect[:-2] + second_conjugation['perfect'][index]
     return latin_word
 
