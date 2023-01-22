@@ -14,7 +14,6 @@ second_conjugation = {
     'future': ['ebo', 'ebis', 'ebit', 'ebimus', 'ebitis', 'ebunt']
 }
 
-
 def verb_english_to_latin(word, person, number, tense):
     if tense not in tenses:
         return "This is not a case"
