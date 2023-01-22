@@ -7,6 +7,13 @@ first_conjugation = {
     'future': ['abo', 'abis', 'abit', 'abimus', 'abitis', 'abunt']
 }
 
+second_conjugation = {
+    'present': ['o', 'es', 'et', 'emus', 'etis', 'ent'],
+    'imperfect': ['ebam', 'ebas', 'ebat', 'ebamus', 'ebatis', 'ebant'],
+    'perfect': ['ui', 'uisti', 'uit', 'uimus', 'uistis', 'uerunt'],
+    'future': ['ebo', 'ebis', 'ebit', 'ebimus', 'ebitis', 'ebunt']
+}
+
 
 def verb_english_to_latin(word, person, number, tense):
     if tense not in tenses:
@@ -29,5 +36,11 @@ def verb_english_to_latin(word, person, number, tense):
             latin_word = infinitive[:-3] + first_conjugation[tense][index]
         else:
             latin_word = perfect[:-2] + first_conjugation['perfect'][index]
+    if infinitive.endswith("ere"):
+        # 2nd conjugation
+        if tense != "perfect":
+            latin_word = infinitive[:-3] + second_conjugation[tense][index]
+        else:
+            latin_word = perfect[:-2] + second_conjugation['perfect'][index]
     return latin_word
 
