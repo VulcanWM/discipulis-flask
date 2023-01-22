@@ -1,7 +1,7 @@
 numbers = ['singular', 'plural']
 cases = ['nominative', 'vocative', 'accusative', 'genitive', 'dative', 'ablative']
 persons = ['1st', '2nd', '3rd']
-tenses = ['present', 'future', 'imperfect', 'perfect']
+tenses = ['present', 'future', 'imperfect', 'perfect', 'pluperfect', 'future perfect']
 
 nouns = {
     "girl": "puella,puellae,f.",

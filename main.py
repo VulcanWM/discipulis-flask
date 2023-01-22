@@ -7,4 +7,5 @@ for noun in nouns.keys():
     print(noun_english_to_latin(noun, "dative", "singular"))
 
 
-print(verb_english_to_latin("love", "1st", "plural", "present"))
+print(verb_english_to_latin("love", "1st", "plural", "pluperfect"))
+print(verb_english_to_latin("love", "1st", "plural", "future perfect"))

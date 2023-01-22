@@ -4,15 +4,20 @@ first_conjugation = {
     'present': ['o', 'as', 'at', 'amus', 'atis', 'ant'],
     'imperfect': ['abam', 'abas', 'abat', 'abamus', 'abatis', 'abant'],
     'perfect': ['vi', 'visti', 'vit', 'vimus', 'vistis', 'verunt'],
-    'future': ['abo', 'abis', 'abit', 'abimus', 'abitis', 'abunt']
+    'future': ['abo', 'abis', 'abit', 'abimus', 'abitis', 'abunt'],
+    'future perfect': ['vero', 'veris', 'verit', 'verimus', 'veritis', 'verint'],
+    'pluperfect': ['veram', 'veras', 'verat', 'veramus', 'veratis', 'verant']
 }
 
 second_conjugation = {
     'present': ['o', 'es', 'et', 'emus', 'etis', 'ent'],
     'imperfect': ['ebam', 'ebas', 'ebat', 'ebamus', 'ebatis', 'ebant'],
     'perfect': ['ui', 'uisti', 'uit', 'uimus', 'uistis', 'uerunt'],
-    'future': ['ebo', 'ebis', 'ebit', 'ebimus', 'ebitis', 'ebunt']
+    'future': ['ebo', 'ebis', 'ebit', 'ebimus', 'ebitis', 'ebunt'],
+    'future perfect': ['uero', 'ueris', 'uerit', 'uerimus', 'ueritis', 'uerint'],
+    'pluperfect': ['ueram', 'ueras', 'uerat', 'ueramus', 'ueratis', 'uerant']
 }
+
 
 def verb_english_to_latin(word, person, number, tense):
     if tense not in tenses:
@@ -31,15 +36,15 @@ def verb_english_to_latin(word, person, number, tense):
         index += 3
     if infinitive.endswith("are"):
         # 1st conjugation
-        if tense != "perfect":
+        if "perfect" not in tense:
             latin_word = infinitive[:-3] + first_conjugation[tense][index]
         else:
-            latin_word = perfect[:-2] + first_conjugation['perfect'][index]
+            latin_word = perfect[:-2] + first_conjugation[tense][index]
     if infinitive.endswith("ere"):
         # 2nd conjugation
-        if tense != "perfect":
+        if "perfect" not in tense:
             latin_word = infinitive[:-3] + second_conjugation[tense][index]
         else:
-            latin_word = perfect[:-2] + second_conjugation['perfect'][index]
+            latin_word = perfect[:-2] + second_conjugation[tense][index]
     return latin_word
 
