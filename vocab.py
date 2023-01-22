@@ -5,6 +5,7 @@ tenses = ['present', 'future', 'imperfect', 'perfect', 'pluperfect', 'future per
 
 nouns = {
     "girl": "puella,puellae,f.",
+    "table": "mensa,mensae,f.",
     "year": "annus,anni,m.",
     "boy": "puer,pueri,m.",
     "war": "bellum,belli,n.",
