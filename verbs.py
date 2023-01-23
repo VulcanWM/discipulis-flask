@@ -1,4 +1,4 @@
-from vocab import verbs, numbers, persons, tenses
+from vocab import verbs, numbers, persons, tenses, perfect_stems
 
 first_conjugation = {
     'present': ['o', 'as', 'at', 'amus', 'atis', 'ant'],
@@ -38,6 +38,7 @@ def verb_english_to_latin(word, person, number, tense):
     if person not in persons:
         return "The person has to be 1st, 2nd or 3rd"
     latin_form = verbs[word]
+    nominative = latin_form.split(",")[0]
     infinitive = latin_form.split(",")[1]
     perfect = latin_form.split(",")[2]
     conjugation = latin_form.split(",")[4]
@@ -46,29 +47,37 @@ def verb_english_to_latin(word, person, number, tense):
         index += 3
     if conjugation == "1st":
         # 1st conjugation
-        if "perfect" not in tense:
+        if tense not in perfect_stems:
             latin_word = infinitive[:-3] + first_conjugation[tense][index]
         else:
             latin_word = perfect[:-1] + first_conjugation[tense][index]
     if conjugation == "2nd":
         # 2nd conjugation
-        if "perfect" not in tense:
+        if tense not in perfect_stems:
             latin_word = infinitive[:-3] + second_conjugation[tense][index]
         else:
             latin_word = perfect[:-1] + second_conjugation[tense][index]
     if conjugation == "3rd":
         # 3rd conjugation
-        if "perfect" not in tense:
+        if tense not in perfect_stems:
             latin_word = infinitive[:-3] + third_conjugation[tense][index]
         else:
             latin_word = perfect[:-1] + third_conjugation[tense][index]
     if conjugation == "4th":
-        # 3rd conjugation
-        if "perfect" in tense:
+        # 4th conjugation
+        if tense in perfect_stems:
             latin_word = perfect[:-1] + third_conjugation[tense][index]
         elif tense == "present":
             latin_word = infinitive[:-3] + third_conjugation[tense][index]
         else:
             latin_word = infinitive[:-2] + third_conjugation[tense][index]
+    if conjugation == "mixed":
+        # mixed conjugation
+        if tense in perfect_stems:
+            latin_word = perfect[:-1] + third_conjugation[tense][index]
+        elif tense == "present":
+            latin_word = infinitive[:-3] + third_conjugation[tense][index]
+        else:
+            latin_word = nominative[:-1] + third_conjugation[tense][index]
     return latin_word
 

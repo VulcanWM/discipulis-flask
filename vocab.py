@@ -2,6 +2,7 @@ numbers = ['singular', 'plural']
 cases = ['nominative', 'vocative', 'accusative', 'genitive', 'dative', 'ablative']
 persons = ['1st', '2nd', '3rd']
 tenses = ['present', 'future', 'imperfect', 'perfect', 'pluperfect', 'future perfect']
+perfect_stems = ['perfect', 'pluperfect', 'future perfect']
 
 nouns = {
     "girl": "puella,puellae,f.",
@@ -22,5 +23,6 @@ verbs = {
     'warn': 'moneo,monere,monui,monitum,2nd',
     'rule': 'rego,regere,rexi,rectus,3rd',
     'climb': 'ascendo,ascendere,ascendi,ascensus,3rd',
-    "hear": 'audio,audire,audivi,auditus,4th'
+    "hear": 'audio,audire,audivi,auditus,4th',
+    'capture': 'capio,capere,cepi,captus,mixed'
 }
