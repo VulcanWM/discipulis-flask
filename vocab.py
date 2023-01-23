@@ -21,5 +21,6 @@ verbs = {
     'love': 'amo,amare,amavi,amatum,1st',
     'warn': 'moneo,monere,monui,monitum,2nd',
     'rule': 'rego,regere,rexi,rectus,3rd',
-    'climb': 'ascendo,ascendere,ascendi,ascensus,3rd'
+    'climb': 'ascendo,ascendere,ascendi,ascensus,3rd',
+    "hear": 'audio,audire,audivi,auditus,4th'
 }

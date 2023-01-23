@@ -7,6 +7,9 @@ for noun in nouns.keys():
     print(noun_english_to_latin(noun, "dative", "singular"))
 
 
-print(verb_english_to_latin("climb", "2nd", "plural", "present"))
-print(verb_english_to_latin("climb", "2nd", "plural", "future"))
-print(verb_english_to_latin("climb", "2nd", "plural", "perfect"))
+print(verb_english_to_latin("rule", "2nd", "plural", "present"))
+print(verb_english_to_latin("rule", "2nd", "plural", "future"))
+print(verb_english_to_latin("rule", "2nd", "plural", "perfect"))
+print(verb_english_to_latin("hear", "2nd", "plural", "present"))
+print(verb_english_to_latin("hear", "2nd", "plural", "future"))
+print(verb_english_to_latin("hear", "2nd", "plural", "perfect"))

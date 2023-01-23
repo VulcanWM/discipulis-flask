@@ -61,6 +61,14 @@ def verb_english_to_latin(word, person, number, tense):
         if "perfect" not in tense:
             latin_word = infinitive[:-3] + third_conjugation[tense][index]
         else:
-            latin_word = perfect[:-1] + second_conjugation[tense][index]
+            latin_word = perfect[:-1] + third_conjugation[tense][index]
+    if conjugation == "4th":
+        # 3rd conjugation
+        if "perfect" in tense:
+            latin_word = perfect[:-1] + third_conjugation[tense][index]
+        elif tense == "present":
+            latin_word = infinitive[:-3] + third_conjugation[tense][index]
+        else:
+            latin_word = infinitive[:-2] + third_conjugation[tense][index]
     return latin_word
 
