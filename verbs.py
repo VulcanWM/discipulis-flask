@@ -41,7 +41,7 @@ def verb_english_to_latin(word, person, number, tense):
     nominative = latin_form.split(",")[0]
     infinitive = latin_form.split(",")[1]
     perfect = latin_form.split(",")[2]
-    conjugation = latin_form.split(",")[4]
+    conjugation = latin_form.split(",")[-1]
     index = persons.index(person)
     if number == "plural":
         index += 3
