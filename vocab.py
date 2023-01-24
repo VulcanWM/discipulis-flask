@@ -26,3 +26,7 @@ verbs = {
     "hear": 'audio,audire,audivi,auditus,4th',
     'capture': 'capio,capere,cepi,captus,mixed'
 }
+
+prepositions = {
+    "from": "a/ab,ablative"
+}
