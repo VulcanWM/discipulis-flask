@@ -3,8 +3,8 @@ from verbs import verb_english_to_latin
 from vocab import nouns, verbs
 
 for noun in nouns.keys():
-    print(f"{noun}: dative and singular")
-    print(noun_english_to_latin(noun, "dative", "singular"))
+    print(f"{noun}: genitive and plural")
+    print(noun_english_to_latin(noun, "genitive", "plural"))
 
 
 # print(verb_english_to_latin("hear", "2nd", "plural", "present"))

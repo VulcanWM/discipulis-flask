@@ -17,7 +17,9 @@ nouns = {
     "knee": "genu,genus,n.",
     "house": "domus,domus,m.",
     "king": "rex,regis,m.",
-    "work": "opus,operis,n."
+    "work": "opus,operis,n.",
+    "bed": "cubile,cubilis,n.",
+    "citizen": "civis,civis,c."
 }
 
 verbs = {

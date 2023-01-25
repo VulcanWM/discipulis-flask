@@ -21,9 +21,14 @@ fourth_declension_irregular = \
                   "domus", "domus", "domos/domus", "domuum/domorum", "domibus", "domibus"]
     }
 non_increasing_third_declension = ['civis', 'cubile']
-third_declension_normal = ['', '', 'em', 'is', 'i', 'e', 'es', 'es', 'es', 'um', 'ibus', 'ibus']
-third_declension_neut = ['', '', '', 'is', 'i', 'e', 'a', 'a', 'a', 'um', 'ibus', 'ibus']
-
+third_declension_normal = \
+    ['', '', 'em', 'is', 'i', 'e', 'es', 'es', 'es', 'um', 'ibus', 'ibus']
+third_declension_neut = \
+    ['', '', '', 'is', 'i', 'e', 'a', 'a', 'a', 'um', 'ibus', 'ibus']
+third_declension_non_normal = \
+    ['', '', 'em', 'is', 'i', 'e', 'es', 'es', 'es', 'ium', 'ibus', 'ibus']
+third_declension_non_neut = \
+    ['', '', '', 'is', 'i', 'i', 'ia', 'ia', 'ia', 'ium', 'ibus', 'ibus']
 
 def noun_english_to_latin(word, case, number):
     if case not in cases:
@@ -64,10 +69,16 @@ def noun_english_to_latin(word, case, number):
             # Non-increasing 3rd declension
             if gender == "n.":
                 # Neuter non-increasing 3rd declension
-                latin_word = ""
+                if index in [0, 1, 2]:
+                    latin_word = nominative
+                else:
+                    latin_word = genitive[:-2] + third_declension_non_neut[index]
             else:
                 # Masc/Fem non-increasing 3rd declension
-                latin_word = ""
+                if index in [0, 1]:
+                    latin_word = nominative
+                else:
+                    latin_word = genitive[:-2] + third_declension_non_normal[index]
         else:
             # Increasing 3rd declension
             if gender == "n.":
