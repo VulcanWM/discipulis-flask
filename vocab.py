@@ -19,7 +19,9 @@ nouns = {
     "king": "rex,regis,m.",
     "work": "opus,operis,n.",
     "bed": "cubile,cubilis,n.",
-    "citizen": "civis,civis,c."
+    "citizen": "civis,civis,c.",
+    "thing": "res,rei,f.",
+    "day": "dies,diei,m."
 }
 
 verbs = {

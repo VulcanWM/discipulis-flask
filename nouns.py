@@ -1,9 +1,13 @@
 from vocab import nouns, numbers, cases
 
-first_declension = ["a", "a", "am", "ae", "ae", "a", "ae", "ae", "as", "arum", "is", "is"]
-second_declension_masc = ['us', 'e', 'um', 'i', 'o', 'o', 'i', 'i', 'os', 'orum', 'is', 'is']
-second_declension_masc_er = ['', '', 'um', 'i', 'o', 'o', 'i', 'i', 'os', 'orum', 'is', 'is']
-second_declension_neut = ['um', 'um', 'um', 'i', 'o', 'o', 'a', 'a', 'a', 'orum', 'is', 'is']
+first_declension = \
+    ["a", "a", "am", "ae", "ae", "a", "ae", "ae", "as", "arum", "is", "is"]
+second_declension_masc = \
+    ['us', 'e', 'um', 'i', 'o', 'o', 'i', 'i', 'os', 'orum', 'is', 'is']
+second_declension_masc_er = \
+    ['', '', 'um', 'i', 'o', 'o', 'i', 'i', 'os', 'orum', 'is', 'is']
+second_declension_neut = \
+    ['um', 'um', 'um', 'i', 'o', 'o', 'a', 'a', 'a', 'orum', 'is', 'is']
 second_declension_irregular = \
     {
        'filius': ['filius', 'fili', 'filium', 'fili', 'filio/filii', 'filio', 'filio',
@@ -13,8 +17,10 @@ second_declension_irregular = \
        'vir': ['vir', 'vir', 'virum', 'viri', 'viro', 'viro',
                'viri', 'viri', 'viros', 'virorum/virum', 'viris', 'viris']
     }
-fourth_declension_masc = ['us', 'us', 'um', 'us', 'ui', 'u', 'us', 'us', 'us', 'uum', 'ibus', 'ibus']
-fourth_declension_neut = ['u', 'u', 'u', 'us', 'u', 'u', 'ua', 'ua', 'ua', 'uum', 'ibus', 'ibus']
+fourth_declension_masc = \
+    ['us', 'us', 'um', 'us', 'ui', 'u', 'us', 'us', 'us', 'uum', 'ibus', 'ibus']
+fourth_declension_neut = \
+    ['u', 'u', 'u', 'us', 'u', 'u', 'ua', 'ua', 'ua', 'uum', 'ibus', 'ibus']
 fourth_declension_irregular = \
     {
         "domus": ['domus', 'domus', 'domum', 'domus', 'domui/domo', 'domo',
@@ -29,6 +35,9 @@ third_declension_non_normal = \
     ['', '', 'em', 'is', 'i', 'e', 'es', 'es', 'es', 'ium', 'ibus', 'ibus']
 third_declension_non_neut = \
     ['', '', '', 'is', 'i', 'i', 'ia', 'ia', 'ia', 'ium', 'ibus', 'ibus']
+fifth_declension = \
+    ['es', 'es', 'em', 'ei', 'ei', 'e', 'es', 'es', 'es', 'erum', 'ebus', 'ebus']
+
 
 def noun_english_to_latin(word, case, number):
     if case not in cases:
@@ -106,4 +115,7 @@ def noun_english_to_latin(word, case, number):
             if nominative.endswith("u"):
                 # 2nd declension neuter
                 latin_word = nominative[:-1] + fourth_declension_neut[index]
+    if genitive.endswith("ei"):
+        # 5th declension
+        latin_word = genitive[:-2] + fifth_declension[index]
     return latin_word
