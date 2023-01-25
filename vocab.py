@@ -16,7 +16,8 @@ nouns = {
     "step": "gradus,-us,m.",
     "knee": "genu,genus,n.",
     "house": "domus,domus,m.",
-    "king": "rex,regis,m."
+    "king": "rex,regis,m.",
+    "work": "opus,operis,n."
 }
 
 verbs = {

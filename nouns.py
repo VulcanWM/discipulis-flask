@@ -22,6 +22,7 @@ fourth_declension_irregular = \
     }
 non_increasing_third_declension = ['civis', 'cubile']
 third_declension_normal = ['', '', 'em', 'is', 'i', 'e', 'es', 'es', 'es', 'um', 'ibus', 'ibus']
+third_declension_neut = ['', '', '', 'is', 'i', 'e', 'a', 'a', 'a', 'um', 'ibus', 'ibus']
 
 
 def noun_english_to_latin(word, case, number):
@@ -69,11 +70,14 @@ def noun_english_to_latin(word, case, number):
                 latin_word = ""
         else:
             # Increasing 3rd declension
-            if nominative.endswith("us"):
-                # 3rd declension neuter
-                latin_word = ""
+            if gender == "n.":
+                # Neuter increasing 3rd declension
+                if index in [0, 1, 2]:
+                    latin_word = nominative
+                else:
+                    latin_word = genitive[:-2] + third_declension_neut[index]
             else:
-                # 3rd declension normal
+                # Masc/Fem increasing 3rd declension
                 if index in [0, 1]:
                     latin_word = nominative
                 else:
