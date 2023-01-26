@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Latin is Fun</title>
+    <title>Latin is Fun - All Nouns</title>
 </head>
 <body>
-
+    <h1>All Latin Nouns</h1>
+    {% for noun in nouns.keys() %}
+        <p><a href="/noun/{{nouns[noun]['Nominative']}}">{{noun}}: {{nouns[noun]['Clean']}}</a></p>
+    {% endfor %}
 </body>
 </html>
