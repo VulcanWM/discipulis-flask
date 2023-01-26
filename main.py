@@ -17,3 +17,7 @@ for noun in nouns.keys():
 # print(verb_english_to_latin("capture", "2nd", "plural", "perfect"))
 # print(verb_english_to_latin("capture", "2nd", "plural", "pluperfect"))
 # print(verb_english_to_latin("capture", "2nd", "plural", "future perfect"))
+
+from app import app
+
+app.run(host='0.0.0.0', port=8001)
