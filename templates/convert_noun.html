@@ -5,6 +5,28 @@
     <title>Latin is Fun</title>
 </head>
 <body>
-
+    {% if msg != None %}
+        {{msg|safe}}
+    {% endif %}
+    <h2>Convert Noun</h2>
+    <form method="POST" action="/convert_noun">
+        <label for="word">English Word:</label>
+        <input placeholder="english word" name="word" required><br>
+        <label for="case">Case:</label>
+        <select name="case">
+            <option value="nominative">Nominative</option>
+            <option value="vocative">Vocative</option>
+            <option value="accusative">Accusative</option>
+            <option value="genitive">Genitive</option>
+            <option value="dative">Dative</option>
+            <option value="ablative">Ablative</option>
+        </select><br>
+        <label for="number">Number:</label>
+        <select name="number">
+            <option value="singular">Singular</option>
+            <option value="plural">Plural</option>
+        </select>
+        <br><button>convert noun</button>
+    </form>
 </body>
 </html>

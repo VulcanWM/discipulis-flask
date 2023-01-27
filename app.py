@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from vocab import nouns, verbs
+from nouns import noun_english_to_latin
 
 app = Flask(__name__)
 
@@ -28,5 +29,23 @@ def all_verbs():
         sing_1st = latin_form.split(",")[0]
         clean = latin_form.replace(",", ", ")
         verbs_dict[verb] = {"1stSingular": sing_1st, "Clean": clean}
-    print(verbs_dict)
     return render_template("all_verbs.html", verbs=verbs_dict)
+
+
+@app.route("/convert_noun")
+def convert_noun_page():
+    return render_template("convert_noun.html")
+
+
+@app.route("/convert_noun", methods=['POST', 'GET'])
+def convert_noun_func():
+    if request.method == 'POST':
+        word = request.form['word']
+        case = request.form['case']
+        number = request.form['number']
+        latin = noun_english_to_latin(word, case, number)
+        msg = f"<p>The {number} {case} of {word} is <strong>{latin}</strong></p>"
+        return render_template("convert_noun.html", msg=msg)
+    else:
+        return redirect("/")
+
