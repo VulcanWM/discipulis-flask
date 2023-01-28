@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from vocab import nouns, verbs
 from nouns import noun_english_to_latin
+from verbs import verb_english_to_latin
 
 app = Flask(__name__)
 
@@ -49,3 +50,21 @@ def convert_noun_func():
     else:
         return redirect("/")
 
+
+@app.route("/convert_verb")
+def convert_verb_page():
+    return render_template("convert_verb.html")
+
+
+@app.route("/convert_verb", methods=['POST', 'GET'])
+def convert_verb_func():
+    if request.method == 'POST':
+        word = request.form['word']
+        tense = request.form['tense']
+        person = request.form['person']
+        number = request.form['number']
+        latin = verb_english_to_latin(word, person, number, tense)
+        msg = f"<p>The {tense} {person} person {number} of {word} is <strong>{latin}</strong></p>"
+        return render_template("convert_verb.html", msg=msg)
+    else:
+        return redirect("/")

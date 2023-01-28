@@ -2,9 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Latin is Fun</title>
+    <title>Latin is Fun - Convert Verb</title>
 </head>
 <body>
-
+    {% if msg != None %}
+        {{msg|safe}}
+    {% endif %}
+    <h2>Convert Verb</h2>
+    <form method="POST" action="/convert_verb">
+        <label for="word">English Word:</label>
+        <input placeholder="english word" name="word" required><br>
+        <label for="tense">Tense:</label>
+        <select name="tense">
+            <option value="present">Present</option>
+            <option value="imperfect">Imperfect</option>
+            <option value="perfect">Perfect</option>
+            <option value="future">Future</option>
+            <option value="pluperfect">Pluperfect</option>
+            <option value="future perfect">Future Perfect</option>
+        </select><br>
+        <label for="person">Person:</label>
+        <select name="person">
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+        </select><br>
+        <label for="number">Number:</label>
+        <select name="number">
+            <option value="singular">Singular</option>
+            <option value="plural">Plural</option>
+        </select>
+        <br><button>convert noun</button>
+    </form>
 </body>
 </html>
