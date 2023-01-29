@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_file
 from vocab import nouns, verbs
 from nouns import noun_english_to_latin
 from verbs import verb_english_to_latin
