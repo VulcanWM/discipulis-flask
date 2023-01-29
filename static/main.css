@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
 
+
 :root {
     --primary: #0ced6a;
     --light-accent: #68d696;
@@ -18,7 +19,6 @@ body {
     background-color: var(--background);
     scroll-behavior: smooth;
     color: var(--font-color);
-    text-align: center;
     font-family: 'Ubuntu', sans-serif;
 
 }
@@ -97,4 +97,30 @@ button {
 
 button:hover{
   border-color: var(--dark-accent);
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+table {
+   border-collapse: collapse;
+   border: 1px solid;
+   margin: 4px;
+}
+
+td {
+   border: 1px solid;
+   padding: 15px;
+}
+
+.tables {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+caption {
+  margin: 4px;
 }

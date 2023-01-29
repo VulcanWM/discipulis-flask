@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Latin is Fun - {{table['singular']['nominative']}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <div class="content">
+        <h2>{{latin_form}}</h2>
+        <div class="tables">
+            {% for number in table.keys() %}
+                <table>
+                    <caption class="upper">{{number}}</caption>
+                    {% for case in table[number].keys() %}
+                        <tr>
+                            <td class="upper">{{case}}</td>
+                            <td><strong>{{table[number][case]}}</strong></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

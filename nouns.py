@@ -125,18 +125,19 @@ def get_noun_table(nominative):
     word = None
     key_list = list(nouns.keys())
     val_list = list(nouns.values())
+    latin_form = None
     for form in val_list:
         if form.startswith(nominative):
             position = val_list.index(form)
             word = key_list[position]
+            latin_form = form
     if word is None:
-        return "This word is not in the word list"
+        return False, False
     table = {"singular": {}, "plural": {}}
     for number in list(table.keys()):
         for case in cases:
             table[number][case] = noun_english_to_latin(word, case, number)
-    return table
+    return table, latin_form
 
-print(get_noun_table("rex"))
 
 
