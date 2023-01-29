@@ -119,3 +119,24 @@ def noun_english_to_latin(word, case, number):
         # 5th declension
         latin_word = genitive[:-2] + fifth_declension[index]
     return latin_word
+
+
+def get_noun_table(nominative):
+    word = None
+    key_list = list(nouns.keys())
+    val_list = list(nouns.values())
+    for form in val_list:
+        if form.startswith(nominative):
+            position = val_list.index(form)
+            word = key_list[position]
+    if word is None:
+        return "This word is not in the word list"
+    table = {"singular": {}, "plural": {}}
+    for number in list(table.keys()):
+        for case in cases:
+            table[number][case] = noun_english_to_latin(word, case, number)
+    return table
+
+print(get_noun_table("rex"))
+
+
