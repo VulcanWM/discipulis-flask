@@ -127,7 +127,7 @@ def get_noun_table(nominative):
     val_list = list(nouns.values())
     latin_form = None
     for form in val_list:
-        if form.startswith(nominative):
+        if form.split(",")[0] == nominative:
             position = val_list.index(form)
             word = key_list[position]
             latin_form = form
@@ -137,7 +137,7 @@ def get_noun_table(nominative):
     for number in list(table.keys()):
         for case in cases:
             table[number][case] = noun_english_to_latin(word, case, number)
-    return table, latin_form
+    return table, latin_form, word
 
 
 

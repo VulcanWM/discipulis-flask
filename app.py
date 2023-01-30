@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, send_file
 from vocab import nouns, verbs
 from nouns import noun_english_to_latin, get_noun_table
-from verbs import verb_english_to_latin
+from verbs import verb_english_to_latin, get_verb_table
 
 app = Flask(__name__)
 
@@ -72,8 +72,17 @@ def convert_verb_func():
 
 @app.route("/noun/<latin_word>")
 def noun_page(latin_word):
-    table, latin_form = get_noun_table(latin_word)
+    table, latin_form, word = get_noun_table(latin_word)
     if not table:
         return redirect("/")
     else:
-        return render_template("noun.html", table=table, latin_form=latin_form)
+        return render_template("noun.html", table=table, latin_form=latin_form, word=word)
+
+
+@app.route("/verb/<latin_word>")
+def verb_page(latin_word):
+    table, latin_form, word = get_verb_table(latin_word)
+    if not table:
+        return redirect("/")
+    else:
+        return render_template("verb.html", table=table, latin_form=latin_form, word=word)

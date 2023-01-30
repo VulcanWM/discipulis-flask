@@ -1,4 +1,4 @@
-from vocab import verbs, numbers, persons, tenses, perfect_stems
+from vocab import verbs, numbers, persons, tenses, perfect_stems, verb_types
 
 first_conjugation = {
     'present': ['o', 'as', 'at', 'amus', 'atis', 'ant'],
@@ -81,3 +81,28 @@ def verb_english_to_latin(word, person, number, tense):
             latin_word = nominative[:-1] + third_conjugation[tense][index]
     return latin_word
 
+
+def get_verb_table(first_sing):
+    word = None
+    key_list = list(verbs.keys())
+    val_list = list(verbs.values())
+    latin_form = None
+    for form in val_list:
+        if form.split(",")[0] == first_sing:
+            position = val_list.index(form)
+            word = key_list[position]
+            latin_form = form
+    if word is None:
+        return False, False
+    table = {"present": {},
+             "future": {},
+             "imperfect": {},
+             "perfect": {},
+             "pluperfect": {},
+             "future perfect": {}}
+    for tense in list(table.keys()):
+        for type in verb_types:
+            person = type.split(" ")[0]
+            number = type.split(" ")[1]
+            table[tense][type] = verb_english_to_latin(word, person, number, tense)
+    return table, latin_form, word
