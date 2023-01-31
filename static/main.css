@@ -65,7 +65,7 @@ strong {
 }
 
 select {
-  padding: 10px;
+    padding: 10px;
     border-radius: 30px;
     border: 2px solid  var(--primary);
     background-color: transparent;
@@ -123,4 +123,26 @@ td {
 
 caption {
   margin: 4px;
+}
+
+.mobile-nav {
+  background: rgb(25, 26, 30);
+  position: fixed;
+  bottom: 0;
+  height: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navlink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+  color: #b9b6b6;
+}
+
+.navlink:hover {
+  color: white;
 }
