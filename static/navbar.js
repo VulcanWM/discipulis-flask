@@ -6,3 +6,15 @@ function add_navbar(){
     navbar.innerHTML += `<a href="${urls[i]}" class="navlink">${items[i]}</a>`
   }
 }
+
+function table_click(id, table){
+    var cell_content = document.getElementById(id)
+    var number = id.split(":")[0]
+    var word_case = id.split(":")[1]
+    if (cell_content.innerText == ""){
+        cell_content.innerHTML = "<strong>" + table[number][word_case] + "</strong>"
+    } else {
+        cell_content.innerText = ""
+        console.log(cell_content.innerHTML)
+    }
+}

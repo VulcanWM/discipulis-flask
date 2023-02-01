@@ -20,6 +20,7 @@
     </nav>
     <div class="content">
         <h2>{{word}}: {{latin_form}}</h2>
+        <p>Click the cells to show/hide the latin words</p>
         <div class="tables">
             {% for number in table.keys() %}
                 <table>
@@ -27,7 +28,7 @@
                     {% for case in table[number].keys() %}
                         <tr>
                             <td class="upper">{{case}}</td>
-                            <td><strong>{{table[number][case]}}</strong></td>
+                            <td onclick="table_click('{{number}}:{{case}}', {{table}})" id="{{number}}:{{case}}"><strong>{{table[number][case]}}</strong></td>
                         </tr>
                     {% endfor %}
                 </table>
