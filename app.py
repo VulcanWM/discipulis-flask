@@ -45,6 +45,8 @@ def convert_noun_func():
         case = request.form['case']
         number = request.form['number']
         latin = noun_english_to_latin(word, case, number)
+        if len(latin.split(" ")) != 1:
+            return render_template("convert_noun.html", msg=latin)
         msg = f"<p>The {number} {case} of {word} is <strong>{latin}</strong></p>"
         return render_template("convert_noun.html", msg=msg)
     else:
@@ -64,6 +66,8 @@ def convert_verb_func():
         person = request.form['person']
         number = request.form['number']
         latin = verb_english_to_latin(word, person, number, tense)
+        if len(latin.split(" ")) != 1:
+            return render_template("convert_verb.html", msg=latin)
         msg = f"<p>The {tense} {person} person {number} of {word} is <strong>{latin}</strong></p>"
         return render_template("convert_verb.html", msg=msg)
     else:

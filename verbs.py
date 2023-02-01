@@ -30,13 +30,13 @@ third_conjugation = {
 
 def verb_english_to_latin(word, person, number, tense):
     if tense not in tenses:
-        return "This is not a case"
+        return "<p class='red'>This is not a case</p>"
     if number not in numbers:
-        return "A number has to be singular or plural"
+        return "<p class='red'>A number has to be singular or plural</p>"
     if word not in verbs.keys():
-        return "This word is not in the word list"
+        return f"<p class='red'>{word} is not in the word list</p>"
     if person not in persons:
-        return "The person has to be 1st, 2nd or 3rd"
+        return "<p class='red'>The person has to be 1st, 2nd or 3rd</p>"
     latin_form = verbs[word]
     nominative = latin_form.split(",")[0]
     infinitive = latin_form.split(",")[1]

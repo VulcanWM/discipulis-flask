@@ -23,7 +23,7 @@
         <p>Click the cells to show/hide the latin words</p>
         <div class="tables">
             {% for tense in table.keys() %}
-                <table>
+                <table id="{{tense}}">
                     <caption class="upper">{{tense}}</caption>
                     {% for type in table[tense].keys() %}
                         <tr>

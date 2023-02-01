@@ -23,7 +23,7 @@
         <p>Click the cells to show/hide the latin words</p>
         <div class="tables">
             {% for number in table.keys() %}
-                <table>
+                <table id="{{number}}">
                     <caption class="upper">{{number}}</caption>
                     {% for case in table[number].keys() %}
                         <tr>

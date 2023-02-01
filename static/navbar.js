@@ -18,3 +18,8 @@ function table_click(id, table){
         console.log(cell_content.innerHTML)
     }
 }
+
+function table_hide_all(){
+    var tables = document.getElementsByTagName("tables")
+    console.log(tables)
+}

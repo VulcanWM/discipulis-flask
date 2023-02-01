@@ -41,11 +41,11 @@ fifth_declension = \
 
 def noun_english_to_latin(word, case, number):
     if case not in cases:
-        return "This is not a case"
+        return "<p class='red'>This is not a case</p>"
     if number not in numbers:
-        return "A number has to be singular or plural"
+        return "<p class='red'>A number has to be singular or plural</p>"
     if word not in nouns.keys():
-        return "This word is not in the word list"
+        return f"<p class='red'>{word} is not in the word list</p>"
     index = cases.index(case)
     if number == "plural":
         index += 6
