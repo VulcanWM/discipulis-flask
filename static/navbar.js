@@ -32,11 +32,30 @@ function table_click(id, table){
         cell_content.innerHTML = "<strong>" + table[number][word_case] + "</strong>"
     } else {
         cell_content.innerText = ""
-        console.log(cell_content.innerHTML)
     }
 }
 
 function table_hide_all(){
-    var tables = document.getElementsByTagName("tables")
-    console.log(tables)
+    var tds = document.getElementsByTagName("td")
+    for (index in tds){
+        if (index.length < 4){
+            if (tds[index].id.includes(":")){
+                tds[index].innerText = ""
+            }
+        }
+    }
+}
+
+function table_show_all(table){
+    var tds = document.getElementsByTagName("td")
+    for (index in tds){
+        if (index.length < 4){
+            if (tds[index].id.includes(":")){
+                var cell_content = tds[index]
+                var number = cell_content.id.split(":")[0]
+                var word_case = cell_content.id.split(":")[1]
+                cell_content.innerHTML = "<strong>" + table[number][word_case] + "</strong>"
+            }
+        }
+    }
 }

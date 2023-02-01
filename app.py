@@ -44,11 +44,10 @@ def convert_noun_func():
         word = request.form['word']
         case = request.form['case']
         number = request.form['number']
-        latin = noun_english_to_latin(word, case, number)
+        latin, nominative = noun_english_to_latin(word, case, number)
         if len(latin.split(" ")) != 1:
             return render_template("convert_noun.html", msg=latin)
-        msg = f"<p>The {number} {case} of {word} is <strong>{latin}</strong></p>"
-        return render_template("convert_noun.html", msg=msg)
+        return redirect(f"/noun/{nominative}?number={number}&case={case}")
     else:
         return redirect("/")
 
@@ -65,11 +64,10 @@ def convert_verb_func():
         tense = request.form['tense']
         person = request.form['person']
         number = request.form['number']
-        latin = verb_english_to_latin(word, person, number, tense)
+        latin, nominative = verb_english_to_latin(word, person, number, tense)
         if len(latin.split(" ")) != 1:
             return render_template("convert_verb.html", msg=latin)
-        msg = f"<p>The {tense} {person} person {number} of {word} is <strong>{latin}</strong></p>"
-        return render_template("convert_verb.html", msg=msg)
+        return redirect(f"/verb/{nominative}?tense={tense}&person={person}&number={number}")
     else:
         return redirect("/")
 
@@ -80,7 +78,11 @@ def noun_page(latin_word):
     if not table:
         return redirect("/")
     else:
-        return render_template("noun.html", table=table, latin_form=latin_form, word=word)
+        if request.args.get("number") is not None and request.args.get("case") is not None:
+            the_id = request.args.get("number") + ":" + request.args.get("case")
+        else:
+            the_id = None
+        return render_template("noun.html", table=table, latin_form=latin_form, word=word, id=the_id)
 
 
 @app.route("/verb/<latin_word>")
@@ -89,4 +91,8 @@ def verb_page(latin_word):
     if not table:
         return redirect("/")
     else:
-        return render_template("verb.html", table=table, latin_form=latin_form, word=word)
+        if request.args.get("tense") is not None and request.args.get("person") is not None and request.args.get("number") is not None:
+            the_id = request.args.get("tense") + ":" + request.args.get("person") + " " + request.args.get("number")
+        else:
+            the_id = None
+        return render_template("verb.html", table=table, latin_form=latin_form, word=word, id=the_id)

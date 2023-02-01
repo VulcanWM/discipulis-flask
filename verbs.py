@@ -30,13 +30,13 @@ third_conjugation = {
 
 def verb_english_to_latin(word, person, number, tense):
     if tense not in tenses:
-        return "<p class='red'>This is not a case</p>"
+        return "<p class='red'>This is not a case</p>", False
     if number not in numbers:
-        return "<p class='red'>A number has to be singular or plural</p>"
+        return "<p class='red'>A number has to be singular or plural</p>", False
     if word not in verbs.keys():
-        return f"<p class='red'>{word} is not in the word list</p>"
+        return f"<p class='red'>{word} is not in the word list</p>", False
     if person not in persons:
-        return "<p class='red'>The person has to be 1st, 2nd or 3rd</p>"
+        return "<p class='red'>The person has to be 1st, 2nd or 3rd</p>", False
     latin_form = verbs[word]
     nominative = latin_form.split(",")[0]
     infinitive = latin_form.split(",")[1]
@@ -79,7 +79,7 @@ def verb_english_to_latin(word, person, number, tense):
             latin_word = infinitive[:-3] + third_conjugation[tense][index]
         else:
             latin_word = nominative[:-1] + third_conjugation[tense][index]
-    return latin_word
+    return latin_word, nominative
 
 
 def get_verb_table(first_sing):
@@ -93,7 +93,7 @@ def get_verb_table(first_sing):
             word = key_list[position]
             latin_form = form
     if word is None:
-        return False, False
+        return False, False, False
     table = {"present": {},
              "future": {},
              "imperfect": {},
@@ -104,5 +104,5 @@ def get_verb_table(first_sing):
         for type in verb_types:
             person = type.split(" ")[0]
             number = type.split(" ")[1]
-            table[tense][type] = verb_english_to_latin(word, person, number, tense)
+            table[tense][type] = verb_english_to_latin(word, person, number, tense)[0]
     return table, latin_form, word

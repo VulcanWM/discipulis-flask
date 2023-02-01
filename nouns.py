@@ -41,11 +41,11 @@ fifth_declension = \
 
 def noun_english_to_latin(word, case, number):
     if case not in cases:
-        return "<p class='red'>This is not a case</p>"
+        return "<p class='red'>This is not a case</p>", False
     if number not in numbers:
-        return "<p class='red'>A number has to be singular or plural</p>"
+        return "<p class='red'>A number has to be singular or plural</p>", False
     if word not in nouns.keys():
-        return f"<p class='red'>{word} is not in the word list</p>"
+        return f"<p class='red'>{word} is not in the word list</p>", False
     index = cases.index(case)
     if number == "plural":
         index += 6
@@ -118,7 +118,7 @@ def noun_english_to_latin(word, case, number):
     if genitive.endswith("ei"):
         # 5th declension
         latin_word = genitive[:-2] + fifth_declension[index]
-    return latin_word
+    return latin_word, nominative
 
 
 def get_noun_table(nominative):
@@ -127,16 +127,16 @@ def get_noun_table(nominative):
     val_list = list(nouns.values())
     latin_form = None
     for form in val_list:
-        if form.split(",")[0] == nominative:
+        if form.startswith(nominative):
             position = val_list.index(form)
             word = key_list[position]
             latin_form = form
     if word is None:
-        return False, False
+        return False, False, False
     table = {"singular": {}, "plural": {}}
     for number in list(table.keys()):
         for case in cases:
-            table[number][case] = noun_english_to_latin(word, case, number)
+            table[number][case] = noun_english_to_latin(word, case, number)[0]
     return table, latin_form, word
 
 
