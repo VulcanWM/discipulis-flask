@@ -82,7 +82,7 @@ def noun_page(latin_word):
             the_id = request.args.get("number") + ":" + request.args.get("case")
         else:
             the_id = None
-        return render_template("noun.html", table=table, latin_form=latin_form, word=word, id=the_id)
+        return render_template("noun.html", table=table, latin_form=latin_form, word=word, id=the_id, number=request.args.get("number"))
 
 
 @app.route("/verb/<latin_word>")
@@ -95,4 +95,4 @@ def verb_page(latin_word):
             the_id = request.args.get("tense") + ":" + request.args.get("person") + " " + request.args.get("number")
         else:
             the_id = None
-        return render_template("verb.html", table=table, latin_form=latin_form, word=word, id=the_id)
+        return render_template("verb.html", table=table, latin_form=latin_form, word=word, id=the_id, tense=request.args.get("tense"))
