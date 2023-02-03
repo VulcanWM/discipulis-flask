@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Discipulis - All Nouns</title>
+    <title>Discipulis - {{word}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <meta name="description" content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn"/>
     <meta name="keywords" content="discipulis,students,latin,fun,gcse,student,puella,mensa,amo,ocr,puer,school,moneo,vulcanwm">
@@ -12,12 +12,9 @@
     <meta property="og:description" content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn" />
     <meta property="og:url" content="https://discipulis.vulcanwm.repl.co" />
     <meta property="og:site_name" content="Discipulis" />
-    <script src="{{ url_for('static', filename='navbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='navbar.js') }}" async></script>
 </head>
 <body>
-    <nav id="navbar" class="mobile-nav">
-        <script>add_navbar()</script>
-    </nav>
     <div class="content">
         <h2>{{word}}: {{latin_form}}</h2>
         <p>Click the cells to show/hide the latin words</p>
@@ -31,7 +28,7 @@
                     {% for case in table[number].keys() %}
                         <tr>
                             <td class="upper">{{case}}</td>
-                            <td onclick="table_click('{{number}}:{{case}}', {{table}})" id="{{number}}:{{case}}"><strong>{{table[number][case]}}</strong></td>
+							<td class="flip" data-hidden="{{table[number][case]}}">Click to reveal</td>
                         </tr>
                     {% endfor %}
                 </table>
@@ -39,9 +36,9 @@
         </div>
         {% if id != None %}
             <script>
-                table_hide_all()
+                table_hide_all();
                 document.getElementById("{{id}}").click();
-                document.getElementById("{{number}}").scrollIntoView()
+                document.getElementById("{{number}}").scrollIntoView();
             </script>
         {% endif %}
     </div>
