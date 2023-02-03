@@ -1,5 +1,6 @@
-// Google Analytics
-(function GoogleAnalytics() {
+const flip_elements = [];
+window.addEventListener("load", function() {
+	// Google Analytics
 	const Script1 = document.createElement("script");
 	Script1.setAttribute("async", null);
 	Script1.setAttribute("src", "https://www.googletagmanager.com/gtag/js?id=G-LKMN9BPTZC");
@@ -8,10 +9,8 @@
 	const Script2 = document.createElement("script");
 	Script2.innerText = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-LKMN9BPTZC');";
 	document.head.append(Script2);
-})();
-
-// Adding navigation bar
-(function add_navbar() {
+	
+	// Adding navigation bar
 	const items = ["Home", "Nouns", "Verbs", "Convert Noun", "Convert Verb"];
 	const urls = ["/", "/all_nouns", "/all_verbs", "/convert_noun", "convert_verb"];
 	const navbar = document.createElement("nav");
@@ -21,11 +20,7 @@
 		navbar.innerHTML += `<a href="${urls[i]}" class="navlink">${items[i]}</a>`;
 	}
 	document.body.prepend(navbar);
-})();
-
-// Flip Animation
-const flip_elements = [];
-window.addEventListener("load", function() {
+	// Flip Animation
 	const elements = Array.from(document.querySelectorAll(".flip[data-hidden]"));
 	for (let i = 0; i < elements.length; i++) {
 		const td = elements[i];
