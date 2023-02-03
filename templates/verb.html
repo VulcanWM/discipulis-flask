@@ -23,6 +23,7 @@
         <p>Click the cells to show/hide the latin words</p>
         <button onclick="table_hide_all()">Hide all cells</button>
         <button onclick="table_show_all({{table}})">Show all cells</button>
+        <button onclick="test_mode_on({{table}})">Test Mode On</button>
         <div class="tables">
             {% for tense in table.keys() %}
                 <table id="{{tense}}">

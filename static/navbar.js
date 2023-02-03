@@ -24,18 +24,24 @@ function add_navbar(){
 
 
 // table functions
+
+test_mode = false
+
 function table_click(id, table){
-    var cell_content = document.getElementById(id)
-    var number = id.split(":")[0]
-    var word_case = id.split(":")[1]
-    if (cell_content.innerText == ""){
-        cell_content.innerHTML = "<strong>" + table[number][word_case] + "</strong>"
-    } else {
-        cell_content.innerText = ""
+    if (test_mode == false){
+        var cell_content = document.getElementById(id)
+        var number = id.split(":")[0]
+        var word_case = id.split(":")[1]
+        if (cell_content.innerText == ""){
+            cell_content.innerHTML = "<strong>" + table[number][word_case] + "</strong>"
+        } else {
+            cell_content.innerText = ""
+        }
     }
 }
 
 function table_hide_all(){
+    test_mode = false;
     var tds = document.getElementsByTagName("td")
     for (index in tds){
         if (index.length < 4){
@@ -47,6 +53,7 @@ function table_hide_all(){
 }
 
 function table_show_all(table){
+    test_mode = false;
     var tds = document.getElementsByTagName("td")
     for (index in tds){
         if (index.length < 4){
@@ -56,6 +63,44 @@ function table_show_all(table){
                 var word_case = cell_content.id.split(":")[1]
                 cell_content.innerHTML = "<strong>" + table[number][word_case] + "</strong>"
             }
+        }
+    }
+}
+
+function test_mode_on(table){
+    var tds = document.getElementsByTagName("td")
+    for (index in tds){
+        if (index.length < 4){
+            if (tds[index].id.includes(":")){
+                tds[index].innerHTML = ""
+                let td_index_id = tds[index].id
+                var input = document.createElement('input');
+                input.setAttribute("id","input+" + td_index_id)
+                tds[index].appendChild(input)
+                var button = document.createElement('BUTTON');
+                var text = document.createTextNode("enter");
+                button.appendChild(text);
+                button.setAttribute("id","button+" + td_index_id)
+                button.onclick = function(){submit_test(td_index_id, table);}
+                tds[index].appendChild(button);
+            }
+        }
+    }
+    test_mode = true
+}
+
+function submit_test(id, table){
+    if (test_mode == true){
+        var guess = document.getElementById('input+' + id).value;
+        var number = id.split(":")[0]
+        var word_case = id.split(":")[1]
+        var answer = table[number][word_case]
+        var cell_element = document.getElementById('input+' + id)
+        console.log(cell_element)
+        if (guess.toLowerCase() == answer){
+            document.getElementById(id).innerHTML = "<strong>" + answer + "</strong>"
+        } else {
+            document.getElementById(id).innerHTML = "<span class='red'>" + answer + "</strong>"
         }
     }
 }
