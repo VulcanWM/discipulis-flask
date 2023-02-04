@@ -190,3 +190,11 @@ caption {
 .flip > .inner > .back > p {
     color: var(--light-accent)
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
