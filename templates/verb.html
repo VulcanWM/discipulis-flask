@@ -28,7 +28,7 @@
                     {% for type in table[tense].keys() %}
                         <tr>
                             <td class="upper">{{type}}</td>
-                            <td class="flip" data-hidden="{{table[tense][type]}}">Click to reveal</td>
+                            <td class="flip" id="{{number}}:{{case}}" data-hidden="{{table[tense][type]}}">Click to reveal</td>
                         </tr>
                     {% endfor %}
                 </table>

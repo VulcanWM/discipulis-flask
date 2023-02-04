@@ -28,7 +28,7 @@
                     {% for case in table[number].keys() %}
                         <tr>
                             <td class="upper">{{case}}</td>
-							<td class="flip" data-hidden="{{table[number][case]}}">Click to reveal</td>
+							<td class="flip" id="{{number}}:{{case}}" data-hidden="{{table[number][case]}}">Click to reveal</td>
                         </tr>
                     {% endfor %}
                 </table>

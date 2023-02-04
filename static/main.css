@@ -187,5 +187,5 @@ caption {
 }
 
 .flip > .inner > .back > p {
-    color: #68d696; /* --light-accent */
+    color: var(--light-accent)
 }

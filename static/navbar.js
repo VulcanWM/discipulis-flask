@@ -82,6 +82,7 @@ function test_mode_on(table) {
 	for (index in tds) {
 		if (index.length < 4) {
 			if (tds[index].id.includes(":")) {
+			    console.log(tds[index].id)
 				tds[index].innerHTML = "";
 				let td_index_id = tds[index].id;
 				const input = document.createElement("input");
