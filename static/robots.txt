@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /static/main.css
+Disallow: /static/navbar.js

@@ -11,6 +11,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/robots.txt")
+def robotstxt():
+    return send_file("static/robots.txt")
+
+
 @app.route("/all_nouns")
 def all_nouns():
     nouns_dict = {}
