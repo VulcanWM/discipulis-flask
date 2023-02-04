@@ -56,7 +56,7 @@ input:focus {
 
 .content {
     padding: 16px;
-    padding-bottom: 65px;
+    padding-bottom: 80px;
 }
 
 strong {
@@ -126,26 +126,26 @@ caption {
 }
 
 .mobile-nav {
-    background: rgb(25, 26, 30);
-    position: fixed;
-    bottom: 0;
-    height: 65px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-	z-index: 1;
+  background: rgb(25, 26, 30);
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .navlink {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: underline;
-    color: #b9b6b6;
+  float: left;
+  display: block;
+  text-decoration: underline;
+  color: #b9b6b6;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: underline;
+  font-size: 17px;
 }
 
 .navlink:hover {
-    color: white;
+  color: white;
 }
 
 .flip {
