@@ -173,7 +173,7 @@ caption {
     transform: rotateY(60deg);
 }
 .flip > .inner.flip:hover {
-	transform: rotateY(-60deg);
+	transform: rotateY(120deg);
 }
 .flip > .inner.flip {
     transform: rotateY(180deg);
@@ -205,6 +205,6 @@ caption {
   }
 }
 
-p,label,li,span,a {
+p, label, li, span, a {
   font-size: 1.15em;
 }
