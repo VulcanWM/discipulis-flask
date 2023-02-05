@@ -169,6 +169,12 @@ caption {
     transform-style: preserve-3d;
 }
 
+.flip > .inner:hover {
+    transform: rotateY(60deg);
+}
+.flip > .inner.flip:hover {
+	transform: rotateY(-60deg);
+}
 .flip > .inner.flip {
     transform: rotateY(180deg);
 }
