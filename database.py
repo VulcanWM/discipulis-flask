@@ -1,7 +1,8 @@
 import pymongo
 import datetime
+import os
 
-clientm = pymongo.MongoClient("mongodb+srv://Hello:There@discipulis.kbuwme3.mongodb.net/?retryWrites=true&w=majority")
+clientm = pymongo.MongoClient(os.getenv("clientm"))
 quizdb = clientm.Quiz
 setscol = quizdb.Sets
 
