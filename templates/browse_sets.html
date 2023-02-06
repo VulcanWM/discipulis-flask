@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discipulis - Browse Sets</title>
+    <meta name="google-site-verification" content="00KFI7rPt-LJU_6e_Su0iRLwLcwvbMvKoibRuSIfVNs">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sets.css') }}">
+    <meta name="description" content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+    <meta name="keywords" content="discipulis,verbs,nouns,convert,students,latin,fun,gcse,student,puella,mensa,amo,ocr,puer,school,moneo,vulcanwm">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="WebApp">
+    <meta property="og:title" content="Discipulis - A website to help students learn Latin">
+    <meta property="og:description" content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+    <meta property="og:url" content="https://discipulis.vulcanwm.repl.co">
+    <meta property="og:site_name" content="Discipulis">
+    <script src="{{ url_for('static', filename='navbar.js') }}" async></script>
+</head>
+<body>
+    <div class="content">
+        <h1>Browse Sets</h1>
+        <div class="sets">
+            {% for set in sets %}
+                <a href="/quiz/{{set['_id']}}" target="_blank">
+                    <div class="set">
+                        <h3>{{set['Name']}}</h3>
+                        <p>{{set['Plays']}} &#9654;&#65039;</p>
+                        <p>{{set['Favourites']}} &#11088;</p>
+                    <br>
+                  </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

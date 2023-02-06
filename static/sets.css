@@ -1,0 +1,47 @@
+:root {
+    --primary: #0ced6a;
+    --light-accent: #68d696;
+    --dark-accent: #08a449;
+    --secondary: #0CEDDB;
+    --red: #ff0000;
+    --background: #121212;
+    --light-background: #2b2a2a;
+    --font-color: white;
+    --light-font: #aabbc3;
+}
+
+.sets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.set {
+  border: 2px solid var(--light-background);
+  font-size: 20px;
+  width: 400px;
+  height: 200px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .set {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.set {
+  padding: 6px;
+  color: var(--light-font)
+}
+
+.set:hover {
+  transition: 300ms;
+  border: 2px solid var(--dark-accent);
+  color: white;
+}

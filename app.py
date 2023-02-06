@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, send_file
 from vocab import nouns, verbs
 from nouns import noun_english_to_latin, get_noun_table
 from verbs import verb_english_to_latin, get_verb_table
+from database import all_sets
 
 app = Flask(__name__)
 
@@ -101,3 +102,8 @@ def verb_page(latin_word):
         else:
             the_id = None
         return render_template("verb.html", table=table, latin_form=latin_form, word=word, id=the_id, tense=request.args.get("tense"))
+
+
+@app.route("/browse_sets")
+def browse_sets():
+    return render_template("browse_sets.html", sets=all_sets())
