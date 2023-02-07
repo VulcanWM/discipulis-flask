@@ -3,8 +3,10 @@ from vocab import nouns, verbs
 from nouns import noun_english_to_latin, get_noun_table
 from verbs import verb_english_to_latin, get_verb_table
 from database import all_sets
+import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(12).hex()
 
 
 @app.route("/")
