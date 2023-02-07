@@ -1,5 +1,5 @@
 const flip_elements = [];
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
 	// Google Analytics
 	const Script1 = document.createElement("script");
 	Script1.setAttribute("async", null);
@@ -9,7 +9,7 @@ window.addEventListener("load", function() {
 	const Script2 = document.createElement("script");
 	Script2.innerText = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-LKMN9BPTZC');";
 	document.head.append(Script2);
-	
+
 	// Adding navigation bar
 	const items = ["Home", "Nouns", "Verbs", "Convert Noun", "Convert Verb"];
 	const urls = ["/", "/all_nouns", "/all_verbs", "/convert_noun", "convert_verb"];
@@ -50,70 +50,56 @@ window.addEventListener("load", function() {
 
 		inner.append(front);
 		inner.append(back);
-		td.addEventListener("click", function() {
+		td.addEventListener("click", function () {
 			inner.classList.toggle("flip");
 		});
 
 		td.append(inner);
 		flip_elements.push(inner);
 	}
+
+	// Hide all
+	document.getElementById("hide").addEventListener("click", function () {
+		for (let i = 0; i < flip_elements.length; i++) {
+			flip_elements[i].classList.remove("flip");
+		}
+	});
+	// Show all
+	document.getElementById("show").addEventListener("click", function () {
+		for (let i = 0; i < flip_elements.length; i++) {
+			if (!flip_elements[i].classList.contains("flip")) {
+				flip_elements[i].classList.add("flip");
+			}
+		}
+	});
 });
 
-// table functions
-
-test_mode = false;
-
-function table_hide_all() {
-	for (let i = 0; i < flip_elements.length; i++) {
-		flip_elements[i].classList.remove("flip");
-	}
-}
-
-function table_show_all(table) {
-	for (let i = 0; i < flip_elements.length; i++) {
-		if (!flip_elements[i].classList.contains("flip")) {
-			flip_elements[i].classList.add("flip");
-		}
-	}
-}
-
+// Test mode
+let test_mode = false;
 function test_mode_on(table) {
-	const tds = document.getElementsByTagName("td");
-	for (index in tds) {
-		if (index.length < 4) {
-			if (tds[index].id.includes(":")) {
-			    console.log(tds[index].id)
-				tds[index].innerHTML = "";
-				let td_index_id = tds[index].id;
-				const input = document.createElement("input");
-				input.setAttribute("id", "input+" + td_index_id);
-				tds[index].append(input);
-				const button = document.createElement("BUTTON");
-				const text = document.createTextNode("enter");
-				button.append(text);
-				button.setAttribute("id", "button+" + td_index_id);
-				button.addEventListener("click", function() {
-					submit_test(td_index_id, table);
-				});
-				tds[index].append(button);
-			}
+	const tds = Array.from(document.getElementsByTagName("td"));
+	for (let i = 0; i < tds.length; i++) {
+		const word = tds[i].getAttribute("data-hidden");
+		if (word) {
+			const inner = tds[i].innerHTML;
+			tds[i].innerHTML = "";
+			const td_index_id = i;
+			const input = document.createElement("input");
+			input.setAttribute("id", "input+" + td_index_id);
+			tds[i].append(input);
+			const button = document.createElement("button");
+			const text = document.createTextNode("enter");
+			button.append(text);
+			button.setAttribute("id", "button+" + td_index_id);
+			button.addEventListener("click", function () {
+				if (input.value.toLowerCase() === tds[td_index_id].getAttribute("data-hidden")) {
+					tds[td_index_id].innerHTML = "<strong>" + tds[td_index_id].getAttribute("data-hidden") + "</strong>";
+				} else {
+					tds[td_index_id].innerHTML = "<span class='red'>" + tds[td_index_id].getAttribute("data-hidden") + "</strong>";
+				}
+			});
+			tds[i].append(button);
 		}
 	}
 	test_mode = true;
-}
-
-function submit_test(id, table) {
-	if (test_mode == true) {
-		const guess = document.getElementById("input+" + id).value;
-		const number = id.split(":")[0];
-		const word_case = id.split(":")[1];
-		const answer = table[number][word_case];
-		const cell_element = document.getElementById("input+" + id);
-		console.log(cell_element);
-		if (guess.toLowerCase() == answer) {
-			document.getElementById(id).innerHTML = "<strong>" + answer + "</strong>";
-		} else {
-			document.getElementById(id).innerHTML = "<span class='red'>" + answer + "</strong>";
-		}
-	}
 }
