@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, send_file
 from vocab import nouns, verbs
 from nouns import noun_english_to_latin, get_noun_table
 from verbs import verb_english_to_latin, get_verb_table
-from database import all_sets
+from database import all_sets, get_set
 import os
 
 app = Flask(__name__)
@@ -90,7 +90,8 @@ def noun_page(latin_word):
             the_id = request.args.get("number") + ":" + request.args.get("case")
         else:
             the_id = None
-        return render_template("noun.html", table=table, latin_form=latin_form, word=word, id=the_id, number=request.args.get("number"))
+        return render_template("noun.html", table=table, latin_form=latin_form, word=word, id=the_id,
+                               number=request.args.get("number"))
 
 
 @app.route("/verb/<latin_word>")
@@ -99,13 +100,60 @@ def verb_page(latin_word):
     if not table:
         return redirect("/")
     else:
-        if request.args.get("tense") is not None and request.args.get("person") is not None and request.args.get("number") is not None:
+        if request.args.get("tense") is not None and request.args.get("person") is not None and request.args.get(
+                "number") is not None:
             the_id = request.args.get("tense") + ":" + request.args.get("person") + " " + request.args.get("number")
         else:
             the_id = None
-        return render_template("verb.html", table=table, latin_form=latin_form, word=word, id=the_id, tense=request.args.get("tense"))
+        return render_template("verb.html", table=table, latin_form=latin_form, word=word, id=the_id,
+                               tense=request.args.get("tense"))
 
 
 @app.route("/browse_sets")
 def browse_sets():
     return render_template("browse_sets.html", sets=all_sets())
+
+
+@app.route("/quiz/<quiz_id>")
+def quiz_page(quiz_id):
+    quiz_set = get_set(quiz_id)
+    if not quiz_set:
+        return redirect("/browse_sets")
+    answer_type = request.args.get("answer_type")
+    question_type = request.args.get("question_type")
+    if not answer_type or not question_type:
+        return redirect(f"/start_quiz/{quiz_id}")
+    return f"Answer Type: {answer_type}<br>Question Type: {question_type}<br>" \
+           f"Quiz function hasn't finished being working on." \
+           f"<br>Check it out later"
+
+
+@app.route("/start_quiz/<quiz_id>")
+def start_quiz_page(quiz_id):
+    quiz_set = get_set(quiz_id)
+    if not quiz_set:
+        return redirect("/browse_sets")
+    questions = {"a": "English to Latin", "b": "Latin to English"}
+    noun_questions = {"c": "Cases"}
+    verb_questions = {"d": "Tenses"}
+    if 'noun' in quiz_set['Type']:
+        questions.update(noun_questions)
+    if 'verb' in quiz_set['Type']:
+        questions.update(verb_questions)
+    return render_template("quiz_start.html", quiz=quiz_set, questions=questions)
+
+
+@app.route("/quiz/<quiz_id>", methods=['POST', 'GET'])
+def start_quiz_func(quiz_id):
+    quiz_set = get_set(quiz_id)
+    if not quiz_set:
+        return redirect("/browse_sets")
+    answer_type = request.form['answer_type']
+    question_type = ""
+    for request_id in request.form:
+        if request_id.startswith('question_'):
+            question_id = request_id.replace("question_", "")
+            question_type += question_id
+    if question_type == "":
+        return redirect(f"/start_quiz/{quiz_id}")
+    return redirect(f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}")

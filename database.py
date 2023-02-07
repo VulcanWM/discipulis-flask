@@ -33,3 +33,10 @@ def add_set(set_id, set_name, set_type, set_creator, set_words):
         "Created": current_date,
     }]
     setscol.insert_many(document)
+
+
+def get_set(set_id):
+    myquery = {"_id": set_id}
+    for quiz_set in setscol.find(myquery):
+        return quiz_set
+    return False

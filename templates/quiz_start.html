@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discipulis - Start {{quiz['Name']}} Quiz</title>
+    <meta name="google-site-verification" content="00KFI7rPt-LJU_6e_Su0iRLwLcwvbMvKoibRuSIfVNs">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <meta name="description"
+          content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+    <meta name="keywords"
+          content="discipulis,verbs,nouns,convert,students,latin,fun,gcse,student,puella,mensa,amo,ocr,puer,school,moneo,vulcanwm">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="WebApp">
+    <meta property="og:title" content="Discipulis - A website to help students learn Latin">
+    <meta property="og:description"
+          content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+    <meta property="og:url" content="https://discipulis.vulcanwm.repl.co">
+    <meta property="og:site_name" content="Discipulis">
+    <script src="{{ url_for('static', filename='navbar.js') }}" async></script>
+</head>
+<body>
+<div class="content">
+    <form method="POST" action="/quiz/{{quiz['_id']}}">
+        <label for="answer_type">Answer Type:</label>
+        <select name="answer_type">
+            <option value="written">Written Only</option>
+            <option value="multiple">Multiple Choice Only</option>
+            <option value="both">Written and Multiple Choice</option>
+        </select><br>
+        <h3>Question Types:</h3>
+        {% for question_id in questions %}
+            <input type="checkbox" id="question_{{question_id}}" name="question_{{question_id}}" value="{{questions[question_id]}}">
+            <label for="question_{{question_id}}">{{questions[question_id]}}</label><br>
+        {% endfor %}
+        <button>start quiz</button>
+    </form>
+</div>
+</body>
+</html>
