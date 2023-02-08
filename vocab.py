@@ -4,6 +4,10 @@ persons = ['1st', '2nd', '3rd']
 tenses = ['present', 'future', 'imperfect', 'perfect', 'pluperfect', 'future perfect']
 perfect_stems = ['perfect', 'pluperfect', 'future perfect']
 verb_types = ['1st singular', '2nd singular', '3rd singular', '1st plural', '2nd plural', '3rd plural']
+main_questions = {"a": "English to Latin", "b": "Latin to English"}
+noun_questions = {"c": "Cases"}
+verb_questions = {"d": "Tenses"}
+all_questions = {"a": "English to Latin", "b": "Latin to English", "c": "Cases", "d": "Tenses"}
 
 nouns = {
     "girl": "puella,puellae,f.",

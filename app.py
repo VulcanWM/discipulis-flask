@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, send_file
-from vocab import nouns, verbs
+from vocab import nouns, verbs, main_questions, noun_questions, verb_questions
 from nouns import noun_english_to_latin, get_noun_table
 from verbs import verb_english_to_latin, get_verb_table
 from database import all_sets, get_set
+from functions import generate_question
 import os
 
 app = Flask(__name__)
@@ -123,9 +124,11 @@ def quiz_page(quiz_id):
     question_type = request.args.get("question_type")
     if not answer_type or not question_type:
         return redirect(f"/start_quiz/{quiz_id}")
-    return f"Answer Type: {answer_type}<br>Question Type: {question_type}<br>" \
-           f"Quiz function hasn't finished being working on." \
-           f"<br>Check it out later"
+    question_tuple = generate_question(quiz_id, answer_type, question_type)
+    return str(question_tuple)
+    # return f"Answer Type: {answer_type}<br>Question Type: {question_type}<br>" \
+    #        f"Quiz function hasn't finished being working on." \
+    #        f"<br>Check it out later"
 
 
 @app.route("/start_quiz/<quiz_id>")
@@ -133,9 +136,7 @@ def start_quiz_page(quiz_id):
     quiz_set = get_set(quiz_id)
     if not quiz_set:
         return redirect("/browse_sets")
-    questions = {"a": "English to Latin", "b": "Latin to English"}
-    noun_questions = {"c": "Cases"}
-    verb_questions = {"d": "Tenses"}
+    questions = main_questions
     if 'noun' in quiz_set['Type']:
         questions.update(noun_questions)
     if 'verb' in quiz_set['Type']:
@@ -143,7 +144,7 @@ def start_quiz_page(quiz_id):
     return render_template("quiz_start.html", quiz=quiz_set, questions=questions)
 
 
-@app.route("/quiz/<quiz_id>", methods=['POST', 'GET'])
+@app.route("/start_quiz/<quiz_id>", methods=['POST', 'GET'])
 def start_quiz_func(quiz_id):
     quiz_set = get_set(quiz_id)
     if not quiz_set:
