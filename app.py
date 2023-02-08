@@ -136,7 +136,8 @@ def start_quiz_page(quiz_id):
     quiz_set = get_set(quiz_id)
     if not quiz_set:
         return redirect("/browse_sets")
-    questions = main_questions
+    # questions = main_questions
+    questions = {}
     if 'noun' in quiz_set['Type']:
         questions.update(noun_questions)
     if 'verb' in quiz_set['Type']:
