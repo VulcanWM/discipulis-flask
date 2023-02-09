@@ -3,7 +3,7 @@ from vocab import nouns, verbs, main_questions, noun_questions, verb_questions
 from nouns import noun_english_to_latin, get_noun_table
 from verbs import verb_english_to_latin, get_verb_table
 from database import all_sets, get_set
-from functions import generate_question
+from functions import generate_question, get_cookie, add_cookie
 import os
 
 app = Flask(__name__)
@@ -124,11 +124,47 @@ def quiz_page(quiz_id):
     question_type = request.args.get("question_type")
     if not answer_type or not question_type:
         return redirect(f"/start_quiz/{quiz_id}")
-    question_tuple = generate_question(quiz_id, answer_type, question_type)
-    return str(question_tuple)
+    if not get_cookie(f"{quiz_id}:number") or (int(get_cookie(f"{quiz_id}:number")) > 10) \
+            or not get_cookie(f"{quiz_id}:score"):
+        add_cookie(f"{quiz_id}:number", "1")
+        add_cookie(f"{quiz_id}:score", "0")
+    score = get_cookie(f"{quiz_id}:score")
+    number = get_cookie(f"{quiz_id}:number")
+    question, choices, answers = generate_question(quiz_id, answer_type, question_type)
+    add_cookie(f"{quiz_id}:answers", answers)
+    post_url = f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}"
+    # action needs a url, and render that in template
+    return render_template("quiz_question.html", score=score, number=number, question=question,
+                           choices=choices, quiz_set=quiz_set, post_url=post_url)
     # return f"Answer Type: {answer_type}<br>Question Type: {question_type}<br>" \
     #        f"Quiz function hasn't finished being working on." \
     #        f"<br>Check it out later"
+
+
+@app.route("/quiz/<quiz_id>", methods=['POST', 'GET'])
+def quiz_answer(quiz_id):
+    quiz_set = get_set(quiz_id)
+    if not quiz_set:
+        return redirect("/browse_sets")
+    if not get_cookie(f"{quiz_id}:number") or not get_cookie(f"{quiz_id}:score") \
+            or not get_cookie(f"{quiz_id}:answers"):
+        return redirect(f"/start_quiz/{quiz_id}")
+    answer_type = request.args.get("answer_type")
+    question_type = request.args.get("question_type")
+    if not answer_type or not question_type:
+        return redirect(f"/start_quiz/{quiz_id}")
+    answers = get_cookie(f"{quiz_id}:answers")
+    answer = request.form['answer'].lower()
+    if answer in answers.split(","):
+        score = int(get_cookie(f"{quiz_id}:score")) + 1
+        add_cookie(f"{quiz_id}:score", str(score))
+    number = int(get_cookie(f"{quiz_id}:number"))
+    if number == 10:
+        add_cookie(f"{quiz_id}:number", False)
+        return f"You finished the quiz! You got {get_cookie(f'{quiz_id}:score')} out of 10!"
+    else:
+        add_cookie(f"{quiz_id}:number", number+1)
+        return redirect(f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}")
 
 
 @app.route("/start_quiz/<quiz_id>")

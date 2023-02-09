@@ -208,3 +208,7 @@ caption {
 p, label, li, span, a {
   font-size: 1.15em;
 }
+
+hr {
+    border: 1px solid var(--light-font);
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discipulis - </title>
+    <meta name="google-site-verification" content="00KFI7rPt-LJU_6e_Su0iRLwLcwvbMvKoibRuSIfVNs">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <meta name="description"
+          content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+    <meta name="keywords"
+          content="discipulis,verbs,nouns,convert,students,latin,fun,gcse,student,puella,mensa,amo,ocr,puer,school,moneo,vulcanwm">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="WebApp">
+    <meta property="og:title" content="Discipulis - A website to help students learn Latin">
+    <meta property="og:description"
+          content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+    <meta property="og:url" content="https://discipulis.vulcanwm.repl.co">
+    <meta property="og:site_name" content="Discipulis">
+    <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"/>
+    <script src="{{ url_for('static', filename='navbar.js') }}" async></script>
+</head>
+<body>
+<div class="content">
+    <h2>{{quiz_set['Name']}}</h2>
+    <p>Question <strong>{{number}}</strong> out of 10</p>
+    <p>Score: <strong>{{score}}</strong></p>
+    <hr>
+    <p>{{question}}</p>
+    {% if choices == "input" %}
+      <form action="{{post_url}}" method="POST">
+          <input name="answer" placeholder="answer" autocomplete="off" required><br>
+          <button>submit answer</button>
+      </form>
+    {% else %}
+        {% for choice in choices %}
+            <form action="{{post_url}}" method="POST">
+                <button name="answer" value="{{choice}}">{{choice}}</button>
+            </form>
+        {% endfor %}
+    {% endif %}
+</div>
+</body>
+</html>

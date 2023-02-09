@@ -49,10 +49,8 @@ def generate_question(quiz_id, answer_type, question_type):
         question_case = random.choice(cases)
         number = random.choice(['singular', 'plural'])
         nominative = noun_english_to_latin(question_word, "nominative", "singular")[0]
-        print(nominative)
         word_table = get_noun_table(nominative)[0]
         latin_word = word_table[number][question_case]
-        print(latin_word)
         question = f"{latin_word} is {number}. What case is it?"
         answers = []
         for loop_case in word_table[number].keys():
@@ -62,7 +60,7 @@ def generate_question(quiz_id, answer_type, question_type):
         if this_a_type == "written":
             choices = "input"
         else:
-            question_cases = cases
+            question_cases = ['nominative', 'vocative', 'accusative', 'genitive', 'dative', 'ablative']
             choices = [question_case]
             question_cases.remove(question_case)
             for i in range(3):
@@ -75,14 +73,12 @@ def generate_question(quiz_id, answer_type, question_type):
         present_singular = verb_english_to_latin(question_word, "1st", "singular", "present")[0]
         word_table = get_verb_table(present_singular)[0]
         word_verb_type = random.choice(verb_types)
-        print(present_singular)
         latin_word = word_table[tense][word_verb_type]
-        print(latin_word)
         question = f"What tense is {latin_word}?"
         if this_a_type == "written":
             choices = "input"
         else:
-            question_tenses = tenses
+            question_tenses = ['present', 'imperfect', 'perfect', 'future', 'pluperfect', 'future perfect']
             choices = [tense]
             question_tenses.remove(tense)
             for i in range(3):
