@@ -43,6 +43,8 @@ def verb_english_to_latin(word, person, number, tense):
     perfect = latin_form.split(",")[2]
     conjugation = latin_form.split(",")[-1]
     index = persons.index(person)
+    if number == "singular" and person == "1st" and tense == "present":
+        return nominative, nominative
     if number == "plural":
         index += 3
     if conjugation == "1st":

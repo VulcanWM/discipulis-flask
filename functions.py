@@ -49,7 +49,11 @@ def generate_question(quiz_id, answer_type, question_type):
         question_case = random.choice(cases)
         number = random.choice(['singular', 'plural'])
         nominative = noun_english_to_latin(question_word, "nominative", "singular")[0]
+        print("nom")
+        print(nominative)
         word_table = get_noun_table(nominative)[0]
+        print("table")
+        print(word_table)
         latin_word = word_table[number][question_case]
         question = f"{latin_word} is {number}. What case is it?"
         answers = []
@@ -91,3 +95,4 @@ def generate_question(quiz_id, answer_type, question_type):
     if this_q_type == "Latin to English":
         pass
     return False
+

@@ -12,7 +12,7 @@ second_declension_irregular = \
     {
        'filius': ['filius', 'fili', 'filium', 'fili', 'filio/filii', 'filio', 'filio',
                   'filii', 'filii', 'filios', 'filiorum', 'filiis', 'filiis'],
-       'deus': ['deus', 'deus', 'deum', 'dei', 'deo', 'deo'
+       'deus': ['deus', 'deus', 'deum', 'dei', 'deo', 'deo',
                 'di/dei', 'di/dei', 'deos', 'deorum/deum', 'dis/deis', 'dis/deis'],
        'vir': ['vir', 'vir', 'virum', 'viri', 'viro', 'viro',
                'viri', 'viri', 'viros', 'virorum/virum', 'viris', 'viris']
@@ -53,10 +53,11 @@ def noun_english_to_latin(word, case, number):
     nominative = latin_form.split(",")[0]
     genitive = latin_form.split(",")[1]
     gender = latin_form.split(",")[2]
-    if genitive.endswith("ae"):
+    declension = latin_form.split(",")[3]
+    if declension == "1st":
         # 1st declension
         latin_word = nominative[:-1] + first_declension[index]
-    if genitive.endswith("i"):
+    if declension == "2nd":
         # 2nd declension
         if nominative in second_declension_irregular.keys():
             # 2nd declension irregular
@@ -72,7 +73,7 @@ def noun_english_to_latin(word, case, number):
             if nominative.endswith("er"):
                 # 2nd declension masculine other
                 latin_word = nominative + second_declension_masc_er[index]
-    if genitive.endswith("is"):
+    if declension == "3rd":
         # 3rd declension noun
         if nominative in non_increasing_third_declension:
             # Non-increasing 3rd declension
@@ -102,7 +103,7 @@ def noun_english_to_latin(word, case, number):
                     latin_word = nominative
                 else:
                     latin_word = genitive[:-2] + third_declension_normal[index]
-    if genitive.endswith("us"):
+    if declension == "4th":
         # 4th declension
         if nominative in fourth_declension_irregular.keys():
             # 4th declension irregular
@@ -115,7 +116,7 @@ def noun_english_to_latin(word, case, number):
             if nominative.endswith("u"):
                 # 2nd declension neuter
                 latin_word = nominative[:-1] + fourth_declension_neut[index]
-    if genitive.endswith("ei"):
+    if declension == "5th":
         # 5th declension
         latin_word = genitive[:-2] + fifth_declension[index]
     return latin_word, nominative
@@ -138,6 +139,5 @@ def get_noun_table(nominative):
         for case in cases:
             table[number][case] = noun_english_to_latin(word, case, number)[0]
     return table, latin_form, word
-
 
 

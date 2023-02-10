@@ -10,23 +10,23 @@ verb_questions = {"d": "Tenses"}
 all_questions = {"a": "English to Latin", "b": "Latin to English", "c": "Cases", "d": "Tenses"}
 
 nouns = {
-    "girl": "puella,puellae,f.",
-    "table": "mensa,mensae,f.",
-    "year": "annus,anni,m.",
-    "boy": "puer,pueri,m.",
-    "war": "bellum,belli,n.",
-    "man": "vir,viri,m.",
-    "boy": "filius,filii,m.",
-    "god": "deus,dei,m.",
-    "step": "gradus,-us,m.",
-    "knee": "genu,genus,n.",
-    "house": "domus,domus,m.",
-    "king": "rex,regis,m.",
-    "work": "opus,operis,n.",
-    "bed": "cubile,cubilis,n.",
-    "citizen": "civis,civis,c.",
-    "thing": "res,rei,f.",
-    "day": "dies,diei,m."
+    "girl": "puella,puellae,f.,1st",
+    "table": "mensa,mensae,f.,1st",
+    "year": "annus,anni,m.,2nd",
+    "boy": "puer,pueri,m.,2nd",
+    "war": "bellum,belli,n.,2nd",
+    "man": "vir,viri,m.,2nd",
+    "boy": "filius,filii,m.,2nd",
+    "god": "deus,dei,m.,2nd",
+    "step": "gradus,-us,m.,4th",
+    "knee": "genu,genus,n.,4th",
+    "house": "domus,domus,m.,4th",
+    "king": "rex,regis,m.,3rd",
+    "work": "opus,operis,n.,3rd",
+    "bed": "cubile,cubilis,n.,3rd",
+    "citizen": "civis,civis,c.,3rd",
+    "thing": "res,rei,f.,5th",
+    "day": "dies,diei,m.,5th"
 }
 
 verbs = {
