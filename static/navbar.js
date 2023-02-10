@@ -11,8 +11,8 @@ window.addEventListener("load", function () {
 	document.head.append(Script2);
 
 	// Adding navigation bar
-	const items = ["Home", "Nouns", "Verbs", "Convert Noun", "Convert Verb"];
-	const urls = ["/", "/all_nouns", "/all_verbs", "/convert_noun", "convert_verb"];
+	const items = ["Home", "Nouns", "Verbs", "Convert Noun", "Convert Verb", "Browse Sets"];
+	const urls = ["/", "/all_nouns", "/all_verbs", "/convert_noun", "convert_verb", "/browse_sets"];
 	const navbar = document.createElement("nav");
 	navbar.classList.add("mobile-nav");
 	navbar.setAttribute("id", "navbar");

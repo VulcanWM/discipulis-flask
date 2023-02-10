@@ -160,7 +160,6 @@ def quiz_answer(quiz_id):
         same_url = f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}"
         score = get_cookie(f'{quiz_id}:score')
         return render_template("quiz_question.html", quiz_ended=True, score=score, same_url=same_url, quiz_set=quiz_set)
-        # return f"You finished the quiz! You got {get_cookie(f'{quiz_id}:score')} out of 10!"
     else:
         add_cookie(f"{quiz_id}:number", number+1)
         return redirect(f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}")
@@ -171,7 +170,6 @@ def start_quiz_page(quiz_id):
     quiz_set = get_set(quiz_id)
     if not quiz_set:
         return redirect("/browse_sets")
-    # questions = main_questions
     questions = {}
     if 'noun' in quiz_set['Type']:
         questions.update(noun_questions)
@@ -194,3 +192,15 @@ def start_quiz_func(quiz_id):
     if question_type == "":
         return redirect(f"/start_quiz/{quiz_id}")
     return redirect(f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}")
+
+
+@app.route("/set/<set_id>")
+def view_set(set_id):
+    quiz_set = get_set(set_id)
+    if not quiz_set:
+        return redirect("/browse_sets")
+    contains = quiz_set['Type'].split("-")
+    contains = [s + "s" for s in contains]
+    contains = "".join(contains)
+    quiz_set['Contains'] = contains
+    return render_template("view_set.html", quiz_set=quiz_set)
