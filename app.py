@@ -133,12 +133,8 @@ def quiz_page(quiz_id):
     question, choices, answers = generate_question(quiz_id, answer_type, question_type)
     add_cookie(f"{quiz_id}:answers", answers)
     post_url = f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}"
-    # action needs a url, and render that in template
     return render_template("quiz_question.html", score=score, number=number, question=question,
-                           choices=choices, quiz_set=quiz_set, post_url=post_url)
-    # return f"Answer Type: {answer_type}<br>Question Type: {question_type}<br>" \
-    #        f"Quiz function hasn't finished being working on." \
-    #        f"<br>Check it out later"
+                           choices=choices, quiz_set=quiz_set, post_url=post_url, quiz_ended=False)
 
 
 @app.route("/quiz/<quiz_id>", methods=['POST', 'GET'])
@@ -161,7 +157,10 @@ def quiz_answer(quiz_id):
     number = int(get_cookie(f"{quiz_id}:number"))
     if number == 10:
         add_cookie(f"{quiz_id}:number", False)
-        return f"You finished the quiz! You got {get_cookie(f'{quiz_id}:score')} out of 10!"
+        same_url = f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}"
+        score = get_cookie(f'{quiz_id}:score')
+        return render_template("quiz_question.html", quiz_ended=True, score=score, same_url=same_url, quiz_set=quiz_set)
+        # return f"You finished the quiz! You got {get_cookie(f'{quiz_id}:score')} out of 10!"
     else:
         add_cookie(f"{quiz_id}:number", number+1)
         return redirect(f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}")
