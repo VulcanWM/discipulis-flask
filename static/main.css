@@ -152,7 +152,7 @@ caption {
 .flip {
     background-color: transparent;
     perspective: 1000px;
-	width: 150px;
+	width: 200px;
 }
 
 .flip:hover {
@@ -182,7 +182,7 @@ caption {
 .flip > .inner > .front, .flip > .inner > .back {
     position: absolute;
 	left: 0px;
-	top: -34px;
+	top: -38px;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
