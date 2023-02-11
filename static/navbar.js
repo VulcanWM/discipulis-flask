@@ -1,4 +1,5 @@
 const flip_elements = [];
+let test_mode = false;
 window.addEventListener("load", function () {
 	// Google Analytics
 	const Script1 = document.createElement("script");
@@ -20,16 +21,14 @@ window.addEventListener("load", function () {
 		navbar.innerHTML += `<a href="${urls[i]}" class="navlink">${items[i]}</a>`;
 	}
 	document.body.prepend(navbar);
-	// Flip Animation
+
+	// Flip animation
 	const elements = Array.from(document.querySelectorAll(".flip[data-hidden]"));
 	for (let i = 0; i < elements.length; i++) {
 		const td = elements[i];
 
 		const visibleContent = td.textContent;
 		td.textContent = "";
-
-		const hiddenContent = td.getAttribute("data-hidden");
-		td.removeAttribute("data-hidden");
 
 		const inner = document.createElement("div");
 		inner.classList.add("inner");
@@ -45,7 +44,7 @@ window.addEventListener("load", function () {
 		back.classList.add("back");
 
 		const hidden = document.createElement("p");
-		hidden.textContent = hiddenContent;
+		hidden.textContent = td.getAttribute("data-hidden");
 		back.append(hidden);
 
 		inner.append(front);
@@ -59,47 +58,62 @@ window.addEventListener("load", function () {
 	}
 
 	// Hide all
-	document.getElementById("hide").addEventListener("click", function () {
-		for (let i = 0; i < flip_elements.length; i++) {
-			flip_elements[i].classList.remove("flip");
-		}
-	});
-	// Show all
-	document.getElementById("show").addEventListener("click", function () {
-		for (let i = 0; i < flip_elements.length; i++) {
-			if (!flip_elements[i].classList.contains("flip")) {
-				flip_elements[i].classList.add("flip");
+	const hideButton = document.getElementById("hide");
+	if (hideButton) {
+		hideButton.addEventListener("click", function () {
+			for (let i = 0; i < flip_elements.length; i++) {
+				flip_elements[i].removeAttribute("hidden");
+				if (flip_elements[i].nextElementSibling) {
+					flip_elements[i].parentElement.removeChild(flip_elements[i].nextElementSibling);
+				}
+				flip_elements[i].classList.remove("flip");
 			}
-		}
-	});
+			test_mode = false;
+		});
+	}
+
+	// Show all
+	const showButton = document.getElementById("show");
+	if (showButton) {
+		showButton.addEventListener("click", function () {
+			for (let i = 0; i < flip_elements.length; i++) {
+				flip_elements[i].removeAttribute("hidden");
+				if (flip_elements[i].nextElementSibling) {
+					flip_elements[i].parentElement.removeChild(flip_elements[i].nextElementSibling);
+				}
+				if (!flip_elements[i].classList.contains("flip")) {
+					flip_elements[i].classList.add("flip");
+				}
+			}
+			test_mode = false;
+		});
+	}
 });
 
 // Test mode
-let test_mode = false;
-function test_mode_on(table) {
-	const tds = Array.from(document.getElementsByTagName("td"));
-	for (let i = 0; i < tds.length; i++) {
-		const word = tds[i].getAttribute("data-hidden");
-		if (word) {
-			const inner = tds[i].innerHTML;
-			tds[i].innerHTML = "";
-			const td_index_id = i;
-			const input = document.createElement("input");
-			input.setAttribute("id", "input+" + td_index_id);
-			tds[i].append(input);
-			const button = document.createElement("button");
-			const text = document.createTextNode("enter");
-			button.append(text);
-			button.setAttribute("id", "button+" + td_index_id);
-			button.addEventListener("click", function () {
-				if (input.value.toLowerCase() === tds[td_index_id].getAttribute("data-hidden")) {
-					tds[td_index_id].innerHTML = "<strong>" + tds[td_index_id].getAttribute("data-hidden") + "</strong>";
-				} else {
-					tds[td_index_id].innerHTML = "<span class='red'>" + tds[td_index_id].getAttribute("data-hidden") + "</strong>";
-				}
-			});
-			tds[i].append(button);
-		}
+function test_mode_on() {
+	if (test_mode) {
+		return;
+	}
+	for (let i = 0; i < flip_elements.length; i++) {
+		const word = flip_elements[i].parentElement.getAttribute("data-hidden");
+		flip_elements[i].setAttribute("hidden", true);
+		const container = document.createElement("div");
+		const input = document.createElement("input");
+		input.setAttribute("id", "input+" + i);
+		container.append(input);
+		const button = document.createElement("button");
+		button.textContent = "enter";
+		button.setAttribute("id", "button+" + i);
+		button.addEventListener("click", function () {
+			if (input.value.toLowerCase() === flip_elements[i].getAttribute("data-hidden")) {
+				container.innerHTML = "<strong>" + flip_elements[i].getAttribute("data-hidden") + "</strong>";
+			} else {
+				container.innerHTML = "<span class='red'>" + flip_elements[i].getAttribute("data-hidden") + "</strong>";
+			}
+		});
+		container.append(button);
+		flip_elements[i].parentElement.append(container);
 	}
 	test_mode = true;
 }
