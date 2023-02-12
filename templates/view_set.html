@@ -25,7 +25,7 @@
 <div class="content">
     <h2>{{quiz_set['Name']}}</h2>
     <span>{{quiz_set['Plays']}} &#9654;&#65039;</span>
-    <span>{{quiz_set['Favourites']}} &#11088;</span>
+    <span><span class="red">!!!</span> {{quiz_set['Priority']}}</span>
     <p>This set contains <strong>{{quiz_set['Contains']}}</strong></p>
     <button onclick="window.location.href='/start_quiz/{{quiz_set['_id']}}'">start quiz settings</button>
     <h3>All Vocab:</h3>

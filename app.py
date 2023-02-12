@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, send_file
 from vocab import nouns, verbs, main_questions, noun_questions, verb_questions
 from nouns import noun_english_to_latin, get_noun_table
 from verbs import verb_english_to_latin, get_verb_table
-from database import all_sets, get_set
+from database import all_sets, get_set, add_set_play
 from functions import generate_question, get_cookie, add_cookie
 import os
 
@@ -168,6 +168,7 @@ def quiz_answer(quiz_id):
         add_cookie(f"{quiz_id}:score", str(score))
     number = int(get_cookie(f"{quiz_id}:number"))
     if number == 10:
+        add_set_play(quiz_id)
         add_cookie(f"{quiz_id}:number", False)
         same_url = f"/quiz/{quiz_id}?answer_type={answer_type}&question_type={question_type}"
         score = get_cookie(f'{quiz_id}:score')
