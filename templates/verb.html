@@ -18,7 +18,7 @@
     <meta property="og:site_name" content="Discipulis">
     <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
-    <script src="{{ url_for('static', filename='navbar.js') }}" async></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='navbar.js') }}" async></script>
 </head>
 
 <body>
@@ -42,8 +42,7 @@
             {% endfor %}
         </div>
         {% if id != None %}
-        <script>
-            table_hide_all();
+        <script type="text/javascript">
             document.getElementById("{{id}}").click();
             document.getElementById("{{tense}}").scrollIntoView();
         </script>
