@@ -110,6 +110,18 @@ def verb_page(latin_word):
                                tense=request.args.get("tense"))
 
 
+@app.route("/english_noun/<english_noun>")
+def english_noun_redirect(english_noun):
+    latin_word = noun_english_to_latin(english_noun, "nominative", "singular")[0]
+    return redirect(f"/noun/{latin_word}")
+
+
+@app.route("/english_verb/<english_verb>")
+def english_verb_redirect(english_verb):
+    latin_word = verb_english_to_latin(english_verb, "1st", "singular", "present")[0]
+    return redirect(f"/verb/{latin_word}")
+
+
 @app.route("/browse_sets")
 def browse_sets():
     return render_template("browse_sets.html", sets=all_sets())

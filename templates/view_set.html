@@ -30,7 +30,7 @@
     <button onclick="window.location.href='/start_quiz/{{quiz_set['_id']}}'">start quiz settings</button>
     <h3>All Vocab:</h3>
     {% for word in quiz_set['Words'] %}
-        <div class="word">
+        <div class="word" onclick="window.open('/english_{{quiz_set['Words'][word]}}/{{word}}', '_blank')">
             <p>{{word}}: {{quiz_set['Words'][word]}}</p>
         </div>
     {% endfor %}
