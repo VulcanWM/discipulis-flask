@@ -88,6 +88,51 @@ window.addEventListener("load", function () {
 			test_mode = false;
 		});
 	}
+	var url = document.URL
+	if (url.includes("/verb/") && url.includes("number=")){
+	    var info = url.split("?")[1]
+	    if (info.includes("tense")){
+	        var person = ""
+            var number = ""
+            var tense = ""
+            for (element_index in info.split("&")){
+                var element = info.split("&")[element_index]
+                if (element.includes("tense=")){
+                    document.getElementById(element.split("=")[1]).scrollIntoView();
+                    tense = element.split("=")[1]
+                }
+                else if (element.includes("person=")){
+                    person = element.split("=")[1]
+                }
+                else if (element.includes("number=")){
+                    number = element.split("=")[1]
+                }
+            }
+            const cell_id = tense + ":" + person + " " + number
+            const inner = document.getElementById(cell_id).querySelectorAll(".inner")[0];
+            inner.classList.add("flip");
+	    }
+	}
+	if (url.includes("/noun/") && url.includes("number=")){
+	    var info = url.split("?")[1]
+	    console.log(info)
+	    var number = ""
+	    var cell_case = ""
+	    for (element_index in info.split("&")){
+	        var element = info.split("&")[element_index]
+	        if (element.includes("number=")){
+	            document.getElementById(element.split("=")[1]).scrollIntoView();
+	            number = element.split("=")[1]
+	        }
+	        else if (element.includes("case=")){
+	            cell_case = element.split("=")[1]
+	        }
+	    }
+	    const cell_id = number + ":" + cell_case
+	    const inner = document.getElementById(cell_id).querySelectorAll(".inner")[0];
+        inner.classList.add("flip");
+
+	}
 });
 
 // Test mode
