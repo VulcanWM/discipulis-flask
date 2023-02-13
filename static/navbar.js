@@ -1,6 +1,11 @@
 const flip_elements = [];
 let test_mode = false;
 window.addEventListener("load", function () {
+    // Dark Mode
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add("dark-mode")
+    }
+
 	// Google Analytics
 	const Script1 = document.createElement("script");
 	Script1.setAttribute("async", null);

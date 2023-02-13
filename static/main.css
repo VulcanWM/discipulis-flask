@@ -1,17 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
+    --primary: #14a316;
+    --light-accent: #15bd18;
+    --dark-accent: #0f7a10;
+    --red: #ff0000;
+    --background: white;
+    --light-background: #cdcac7;
+    --font-color: black;
+    --light-font: #383838;
+}
+
+.dark-mode {
     --primary: #0ced6a;
     --light-accent: #68d696;
     --dark-accent: #08a449;
-    --secondary: #0CEDDB;
     --red: #ff0000;
     --background: #121212;
     --light-background: #2b2a2a;
     --font-color: white;
     --light-font: #aabbc3;
 }
-
 
 body {
     padding: 0;
@@ -46,7 +55,7 @@ input {
     transition: 0.2s;
     width: 200px;
     margin-bottom: 30px;
-    color: white;
+    color: var(--font-color);
     text-align: center;
 }
 
@@ -74,7 +83,7 @@ select {
     transition: 0.2s;
     width: 200px;
     margin-bottom: 30px;
-    color: white;
+    color: var(--font-color);
     text-align: center;
 }
 
@@ -126,7 +135,7 @@ caption {
 }
 
 .mobile-nav {
-  background: rgb(25, 26, 30);
+  background: var(--light-background);
   overflow: hidden;
   position: fixed;
   bottom: 0;
@@ -138,7 +147,7 @@ caption {
   float: left;
   display: block;
   text-decoration: underline;
-  color: #b9b6b6;
+  color: var(--light-font);
   text-align: center;
   padding: 14px 16px;
   text-decoration: underline;
@@ -146,7 +155,7 @@ caption {
 }
 
 .navlink:hover {
-  color: white;
+  color: var(--font-color);
 }
 
 .flip {
@@ -226,5 +235,6 @@ hr {
 .word:hover {
   transition: 300ms;
   border: 2px solid var(--dark-accent);
-  color: white;
+  color: var(--font-color);
+  cursor: pointer;
 }

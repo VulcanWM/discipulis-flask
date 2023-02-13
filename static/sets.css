@@ -1,21 +1,23 @@
 :root {
+    --primary: #14a316;
+    --light-accent: #15bd18;
+    --dark-accent: #0f7a10;
+    --red: #ff0000;
+    --background: white;
+    --light-background: #cdcac7;
+    --font-color: black;
+    --light-font: #383838;
+}
+
+.dark-mode {
     --primary: #0ced6a;
     --light-accent: #68d696;
     --dark-accent: #08a449;
-    --secondary: #0CEDDB;
     --red: #ff0000;
     --background: #121212;
     --light-background: #2b2a2a;
     --font-color: white;
     --light-font: #aabbc3;
-}
-
-.sets {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
 }
 
 .set {
@@ -44,4 +46,5 @@
   transition: 300ms;
   border: 2px solid var(--dark-accent);
   color: white;
+  cursor: pointer;
 }
