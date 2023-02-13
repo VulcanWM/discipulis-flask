@@ -142,6 +142,7 @@ function test_mode_on() {
 	}
 	for (let i = 0; i < flip_elements.length; i++) {
 		const word = flip_elements[i].parentElement.getAttribute("data-hidden");
+		console.log(word)
 		flip_elements[i].setAttribute("hidden", true);
 		const container = document.createElement("div");
 		const input = document.createElement("input");
@@ -151,10 +152,13 @@ function test_mode_on() {
 		button.textContent = "enter";
 		button.setAttribute("id", "button+" + i);
 		button.addEventListener("click", function () {
-			if (input.value.toLowerCase() === flip_elements[i].getAttribute("data-hidden")) {
-				container.innerHTML = "<strong>" + flip_elements[i].getAttribute("data-hidden") + "</strong>";
+		    var button_id_string = button.id
+		    var button_id = button_id_string.split("+")[1]
+		    var answer = flip_elements[button_id].parentElement.getAttribute("data-hidden")
+			if (input.value.toLowerCase() === answer) {
+				container.innerHTML = "<strong>" + answer + "</strong>";
 			} else {
-				container.innerHTML = "<span class='red'>" + flip_elements[i].getAttribute("data-hidden") + "</strong>";
+				container.innerHTML = "<span class='red'>" + answer + "</strong>";
 			}
 		});
 		container.append(button);
