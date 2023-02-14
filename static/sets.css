@@ -45,6 +45,6 @@
 .set:hover {
   transition: 300ms;
   border: 2px solid var(--dark-accent);
-  color: white;
+  color: var(--font-color);
   cursor: pointer;
 }

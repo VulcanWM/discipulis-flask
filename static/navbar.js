@@ -1,11 +1,26 @@
 const flip_elements = [];
 let test_mode = false;
+
+// Dark Mode Check
+if (localStorage.getItem('mode') == "dark") {
+    document.body.classList.add("dark-mode")
+}
+
 window.addEventListener("load", function () {
     // Dark Mode
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add("dark-mode")
-    }
-
+    const mode_button = document.createElement("button")
+    mode_button.classList.add("mode-button")
+    mode_button.textContent = 'change mode'
+    document.getElementsByClassName("content")[0].append(mode_button)
+    mode_button.addEventListener("click", function () {
+        if (localStorage.getItem('mode') == "dark") {
+            localStorage.removeItem('mode');
+            document.body.classList.remove("dark-mode")
+        } else {
+            localStorage.setItem('mode', 'dark');
+            document.body.classList.add("dark-mode")
+        }
+    });
 	// Google Analytics
 	const Script1 = document.createElement("script");
 	Script1.setAttribute("async", null);
