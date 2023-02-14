@@ -1,7 +1,7 @@
 from flask import session
 from database import get_set
 import random
-from vocab import main_questions, verb_questions, noun_questions, all_questions, cases, tenses, verb_types
+from vocab import verb_questions, noun_questions, all_questions, cases, tenses, verb_types
 from nouns import get_noun_table, noun_english_to_latin
 from verbs import get_verb_table, verb_english_to_latin
 
@@ -33,15 +33,12 @@ def generate_question(quiz_id, answer_type, question_type):
     question_word_type = quiz_set['Words'][question_word]
     word_question_type_list = []
     for char in question_type:
-        if char in main_questions.keys():
-            word_question_type_list.append(char)
-        else:
-            if question_word_type == "noun":
-                if char in noun_questions.keys():
-                    word_question_type_list.append(char)
-            if question_word_type == "verb":
-                if char in verb_questions.keys():
-                    word_question_type_list.append(char)
+        if question_word_type == "noun":
+            if char in noun_questions.keys():
+                word_question_type_list.append(char)
+        if question_word_type == "verb":
+            if char in verb_questions.keys():
+                word_question_type_list.append(char)
     this_q_type_index = random.randint(0, len(word_question_type_list)-1)
     this_q_type_char = word_question_type_list[this_q_type_index]
     this_q_type = all_questions[this_q_type_char]

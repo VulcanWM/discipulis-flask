@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     <meta name="description"
-          content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+          content="{{metadata['Description']}}">
     <meta name="keywords"
-          content="discipulis,verbs,nouns,convert,students,latin,fun,gcse,student,puella,mensa,amo,ocr,puer,school,moneo,vulcanwm">
+          content="{{metadata['Tags']}}">
     <meta name="robots" content="index, follow">
     <meta property="og:type" content="WebApp">
-    <meta property="og:title" content="Discipulis - A website to help students learn Latin">
+    <meta property="og:title" content="Discipulis - Start {{quiz['Name']}} Quiz">
     <meta property="og:description"
-          content="Discipulis is a website for students who are studying Latin and want to find fun resources to help them learn">
+          content="{{metadata['Description']}}">
     <meta property="og:url" content="https://discipulis.vulcanwm.repl.co">
     <meta property="og:site_name" content="Discipulis">
     <meta property="og:image" content="{{ url_for('static', filename='logo.png') }}" />

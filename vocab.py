@@ -4,10 +4,35 @@ persons = ['1st', '2nd', '3rd']
 tenses = ['present', 'future', 'imperfect', 'perfect', 'pluperfect', 'future perfect']
 perfect_stems = ['perfect', 'pluperfect', 'future perfect']
 verb_types = ['1st singular', '2nd singular', '3rd singular', '1st plural', '2nd plural', '3rd plural']
-main_questions = {"a": "English to Latin", "b": "Latin to English"}
 noun_questions = {"c": "Cases"}
 verb_questions = {"d": "Tenses"}
 all_questions = {"a": "English to Latin", "b": "Latin to English", "c": "Cases", "d": "Tenses"}
+metadata = {
+    "index": {"Description": "Discipulis is a website for students who are studying Latin"
+                             " and want to find fun resources to help them learn",
+              "Tags": "discipulis,verbs,nouns,convert,students,latin,fun,gcse,student"
+                      ",puella,mensa,amo,ocr,puer,school,moneo,vulcanwm"},
+    "all_nouns": {"Description": "View all the nouns you need to learn to be proficient in Latin",
+                  "Tags": "discipulis,verbs,nouns,convert,students,latin,fun,gcse,student,declension,1st,2nd,3rd,4th"
+                      "5th,puella,mensa,amo,ocr,puer,school,moneo,vulcanwm,filius,deus,bellum,vir,gradus,genu"},
+    "all_verbs": {"Description": "View all the verbs you need to learn to be proficient in Latin",
+                  "Tags": "discipulis,verbs,nouns,convert,students,latin,fun,gcse,student,declension,1st,2nd,3rd,4th"
+                      "mixed,puella,mensa,amo,ocr,puer,school,moneo,vulcanwm,capio,ambulo,ago,cogo,clamo,bibo"},
+    "browse_sets": {"Description": "View all the sets you can be tested in and how many plays they each have",
+                    "Tags": "discipulis,verbs,nouns,convert,students,latin,fun,gcse,student"
+                      ",puella,mensa,amo,ocr,puer,school,moneo,vulcanwm,sets,quiz"},
+    "convert_noun": {"Description": "Convert any english noun in the wordlist to a Latin case and number",
+                     "Tags": "noun,convert,case,number,discipulis,verbs,nouns,convert,students,latin,fun,gcse,student"
+                      ",puella,mensa,amo,ocr,puer,school,moneo,vulcanwm"},
+    "convert_verb": {"Description": "Convert any english verb in the wordlist to a Latin number, tense and person",
+                     "Tags": "verb,convert,number,tense,person,discipulis,verbs,nouns,convert,students,latin,fun,gcse,student"
+                      ",puella,mensa,amo,ocr,puer,school,moneo,vulcanwm"},
+    "quiz_question": {"Description": "", "Tags": ""},
+    "quiz_start": {"Description": "", "Tags": ""},
+    "view_set": {"Description": "", "Tags": ""},
+    "main": {"Description": "", "Tags": "discipulis,verbs,nouns,convert,students,latin,fun,gcse,student"
+                      ",puella,mensa,amo,ocr,puer,school,moneo,vulcanwm"}
+}
 
 nouns = {
     "girl": "puella,puellae,f.,1st",
