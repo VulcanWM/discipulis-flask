@@ -36,8 +36,8 @@ def all_verbs():
     verbs_dict = {}
     for verb in verbs.keys():
         latin_form = verbs[verb]
-        sing_1st = latin_form.split(",")[0]
-        clean = latin_form.replace(",", ", ")
+        sing_1st = latin_form.split(", ")[0]
+        clean = latin_form
         verbs_dict[verb] = {"1stSingular": sing_1st, "Clean": clean}
     return render_template("all_verbs.html", verbs=verbs_dict, metadata=metadata['all_verbs'])
 

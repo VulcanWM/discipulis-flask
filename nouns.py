@@ -50,10 +50,10 @@ def noun_english_to_latin(word, case, number):
     if number == "plural":
         index += 6
     latin_form = nouns[word]
-    nominative = latin_form.split(",")[0]
-    genitive = latin_form.split(",")[1]
-    gender = latin_form.split(",")[2]
-    declension = latin_form.split(",")[3]
+    nominative = latin_form.split(", ")[0]
+    genitive = latin_form.split(", ")[1]
+    gender = latin_form.split(", ")[2]
+    declension = latin_form.split(", ")[3]
     if declension == "1st":
         # 1st declension
         latin_word = nominative[:-1] + first_declension[index]

@@ -38,10 +38,10 @@ def verb_english_to_latin(word, person, number, tense):
     if person not in persons:
         return "<p class='red'>The person has to be 1st, 2nd or 3rd</p>", False
     latin_form = verbs[word]
-    nominative = latin_form.split(",")[0]
-    infinitive = latin_form.split(",")[1]
-    perfect = latin_form.split(",")[2]
-    conjugation = latin_form.split(",")[-1]
+    nominative = latin_form.split(", ")[0]
+    infinitive = latin_form.split(", ")[1]
+    perfect = latin_form.split(", ")[2]
+    conjugation = latin_form.split(", ")[-1]
     index = persons.index(person)
     if number == "singular" and person == "1st" and tense == "present":
         return nominative, nominative
@@ -90,7 +90,7 @@ def get_verb_table(first_sing):
     val_list = list(verbs.values())
     latin_form = None
     for form in val_list:
-        if form.split(",")[0] == first_sing:
+        if form.split(", ")[0] == first_sing:
             position = val_list.index(form)
             word = key_list[position]
             latin_form = form
