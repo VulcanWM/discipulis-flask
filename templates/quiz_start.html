@@ -33,8 +33,10 @@
         </select><br>
         <h3>Question Types:</h3>
         {% for question_id in questions %}
-            <input type="checkbox" id="question_{{question_id}}" name="question_{{question_id}}" value="{{questions[question_id]}}">
-            <label for="question_{{question_id}}">{{questions[question_id]}}</label><br>
+            <label class="container">{{questions[question_id]}}
+                <input type="checkbox" id="question_{{question_id}}" name="question_{{question_id}}" value="{{questions[question_id]}}">
+                <span class="checkmark"></span>
+            </label>
         {% endfor %}
         <button>start quiz</button>
     </form>
