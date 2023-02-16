@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
-
+/* variable declaration */
 :root {
     --primary: #14a316;
     --light-accent: #15bd18;
@@ -21,6 +21,8 @@
     --font-color: white;
     --light-font: #aabbc3;
 }
+
+/* main element styling */
 
 body {
     padding: 0;
@@ -45,24 +47,6 @@ a:hover {
     color: var(--red);
 }
 
-input {
-    padding: 10px;
-    border-radius: 30px;
-    border: 2px solid var(--primary);
-    background-color: transparent;
-    outline: none;
-    font-size: 15px;
-    transition: 0.2s;
-    width: 200px;
-    margin-bottom: 30px;
-    color: var(--font-color);
-    text-align: center;
-}
-
-input:focus {
-    border-color: var(--dark-accent);
-}
-
 .content {
     padding: 16px;
     padding-bottom: 80px;
@@ -71,24 +55,6 @@ input:focus {
 strong {
     font-weight: bold;
     color: var(--light-accent);
-}
-
-select {
-    padding: 10px;
-    border-radius: 30px;
-    border: 2px solid var(--primary);
-    background-color: transparent;
-    outline: none;
-    font-size: 15px;
-    transition: 0.2s;
-    width: 200px;
-    margin-bottom: 30px;
-    color: var(--font-color);
-    text-align: center;
-}
-
-select:focus {
-    border-color: var(--dark-accent);
 }
 
 button {
@@ -112,27 +78,23 @@ button:hover {
     text-transform: uppercase;
 }
 
-table {
-    border-collapse: collapse;
-    border: 1px solid;
-    margin: 4px;
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
 }
 
-td {
-    border: 1px solid;
-    padding: 15px;
+p, label, li, span, a {
+  font-size: 1.15em;
 }
 
-.tables {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+hr {
+    border: 1px solid var(--light-font);
 }
 
-caption {
-    margin: 4px;
-}
+/* navigation bar */
 
 .mobile-nav {
   background: var(--light-background);
@@ -156,6 +118,78 @@ caption {
 
 .navlink:hover {
   color: var(--font-color);
+}
+
+/* button for changing mode */
+
+.mode-button {
+    margin-top: 1px;
+    margin-right: 2px;
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+/* form element styling */
+
+input {
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid var(--primary);
+    background-color: transparent;
+    outline: none;
+    font-size: 15px;
+    transition: 0.2s;
+    width: 200px;
+    margin-bottom: 30px;
+    color: var(--font-color);
+    text-align: center;
+}
+
+input:focus {
+    border-color: var(--dark-accent);
+}
+
+select {
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid var(--primary);
+    background-color: transparent;
+    outline: none;
+    font-size: 15px;
+    transition: 0.2s;
+    width: 200px;
+    margin-bottom: 30px;
+    color: var(--font-color);
+    text-align: center;
+}
+
+select:focus {
+    border-color: var(--dark-accent);
+}
+
+/* table styling */
+
+table {
+    border-collapse: collapse;
+    border: 1px solid;
+    margin: 4px;
+}
+
+td {
+    border: 1px solid;
+    padding: 15px;
+}
+
+.tables {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+caption {
+    margin: 4px;
 }
 
 .flip {
@@ -206,21 +240,7 @@ caption {
     color: var(--light-accent)
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  select,
-  textarea,
-  input {
-    font-size: 16px;
-  }
-}
-
-p, label, li, span, a {
-  font-size: 1.15em;
-}
-
-hr {
-    border: 1px solid var(--light-font);
-}
+/* styling for word divs */
 
 .word {
   border: 2px solid var(--light-background);
@@ -237,14 +257,6 @@ hr {
   border: 2px solid var(--dark-accent);
   color: var(--font-color);
   cursor: pointer;
-}
-
-.mode-button {
-    margin-top: 1px;
-    margin-right: 2px;
-    position:absolute;
-    top:0;
-    right:0;
 }
 
 /* checkmark styling */
