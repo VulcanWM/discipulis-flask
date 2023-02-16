@@ -32,7 +32,12 @@
     <h3>All Vocab:</h3>
     {% for word in quiz_set['Words'] %}
         <div class="word" onclick="window.open('/english_{{quiz_set['Words'][word]}}/{{word}}', '_blank')">
-            <p>{{word}}: {{quiz_set['Words'][word]}}</p>
+            {% if "-" in word %}
+                {% set clean_word = word.split('-')[0] %}
+            {% else %}
+                {% set clean_word = word %}
+            {% endif %}
+            <p>{{clean_word}}: {{quiz_set['Words'][word]}}</p>
         </div>
     {% endfor %}
 </div>

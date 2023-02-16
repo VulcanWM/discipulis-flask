@@ -44,12 +44,15 @@ def noun_english_to_latin(word, case, number):
         return "<p class='red'>This is not a case</p>", False
     if number not in numbers:
         return "<p class='red'>A number has to be singular or plural</p>", False
-    if word not in nouns.keys():
-        return f"<p class='red'>{word} is not in the word list</p>", False
     index = cases.index(case)
     if number == "plural":
         index += 6
-    latin_form = nouns[word]
+    if nouns.get(f"{word}-1", False):
+        latin_form = nouns[f"{word}-1"]
+    elif nouns.get(word, False):
+        latin_form = nouns[word]
+    else:
+        return f"<p class='red'>{word} is not in the word list</p>", False
     nominative = latin_form.split(", ")[0]
     genitive = latin_form.split(", ")[1]
     gender = latin_form.split(", ")[2]

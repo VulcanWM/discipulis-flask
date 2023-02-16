@@ -24,7 +24,12 @@
         <h1>All Latin Nouns</h1>
         {% for noun in nouns.keys() %}
             <div class="word" onclick="window.location.href='/noun/{{nouns[noun]['Nominative']}}'">
-                <p>{{noun}}: {{nouns[noun]['Clean']}}</p>
+                {% if "-" in noun %}
+                    {% set clean_noun = noun.split('-')[0] %}
+                {% else %}
+                    {% set clean_noun = noun %}
+                {% endif %}
+                <p>{{clean_noun}}: {{nouns[noun]['Clean']}}</p>
             </div>
         {% endfor %}
     </div>

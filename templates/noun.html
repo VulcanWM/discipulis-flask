@@ -23,7 +23,12 @@
 
 <body>
     <div class="content">
-        <h2>{{word}}: {{latin_form}}</h2>
+        {% if "-" in word %}
+            {% set clean_word = word.split('-')[0] %}
+        {% else %}
+            {% set clean_word = word %}
+        {% endif %}
+        <h2>{{clean_word}}: {{latin_form}}</h2>
         <p>Click the cells to show/hide the latin words</p>
         <button id="hide">Hide all cells</button>
         <button id="show">Show all cells</button>
