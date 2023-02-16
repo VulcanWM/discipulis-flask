@@ -1,3 +1,5 @@
+/* variable declaration */
+
 :root {
     --primary: #14a316;
     --light-accent: #15bd18;
@@ -20,6 +22,8 @@
     --light-font: #aabbc3;
 }
 
+/* set box styling */
+
 .set {
   border: 2px solid var(--light-background);
   font-size: 20px;
@@ -28,6 +32,8 @@
   margin: 10px;
   border-radius: 10px;
   text-align: center;
+  padding: 6px;
+  color: var(--light-font)
 }
 
 @media only screen and (max-width: 600px) {
@@ -35,11 +41,6 @@
     width: 250px;
     height: 250px;
   }
-}
-
-.set {
-  padding: 6px;
-  color: var(--light-font)
 }
 
 .set:hover {
