@@ -1,7 +1,7 @@
 numbers = ['singular', 'plural']
 cases = ['nominative', 'vocative', 'accusative', 'genitive', 'dative', 'ablative']
 persons = ['1st', '2nd', '3rd']
-tenses = ['present', 'future', 'imperfect', 'perfect', 'pluperfect', 'future perfect']
+tenses = ['present', 'future', 'imperfect', 'perfect', 'pluperfect', 'future perfect', 'present passive']
 perfect_stems = ['perfect', 'pluperfect', 'future perfect']
 verb_types = ['1st singular', '2nd singular', '3rd singular', '1st plural', '2nd plural', '3rd plural']
 noun_questions = {"c": "Cases"}

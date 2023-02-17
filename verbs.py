@@ -6,7 +6,8 @@ first_conjugation = {
     'perfect': ['i', 'isti', 'it', 'imus', 'istis', 'erunt'],
     'future': ['abo', 'abis', 'abit', 'abimus', 'abitis', 'abunt'],
     'future perfect': ['ero', 'eris', 'erit', 'erimus', 'eritis', 'erint'],
-    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant']
+    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant'],
+    'present passive': ['or', 'aris', 'atur', 'amur', 'amini', 'antur']
 }
 
 second_conjugation = {
@@ -15,7 +16,8 @@ second_conjugation = {
     'perfect': ['i', 'isti', 'it', 'imus', 'istis', 'erunt'],
     'future': ['ebo', 'ebis', 'ebit', 'ebimus', 'ebitis', 'ebunt'],
     'future perfect': ['ero', 'eris', 'erit', 'erimus', 'eritis', 'erint'],
-    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant']
+    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant'],
+    'present passive': ['eor', 'eris', 'etur', 'emur', 'emini', 'entur']
 }
 
 third_conjugation = {
@@ -24,7 +26,12 @@ third_conjugation = {
     'perfect': ['i', 'isti', 'it', 'imus', 'istis', 'erunt'],
     'future': ['am', 'es', 'et', 'emus', 'etis', 'ent'],
     'future perfect': ['ero', 'eris', 'erit', 'erimus', 'eritis', 'erint'],
-    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant']
+    'pluperfect': ['eram', 'eras', 'erat', 'eramus', 'eratis', 'erant'],
+    'present passive': ['or', 'eris', 'itur', 'imur', 'imini', 'untur']
+}
+
+fourth_conjugation = {
+    'present passive': ['or', 'ris', 'tur', 'mur', 'mini', 'untur']
 }
 
 
@@ -71,6 +78,8 @@ def verb_english_to_latin(word, person, number, tense):
             latin_word = perfect[:-1] + third_conjugation[tense][index]
         elif tense == "present":
             latin_word = infinitive[:-3] + third_conjugation[tense][index]
+        elif tense == "present passive":
+            latin_word = infinitive[:-2] + fourth_conjugation[tense][index]
         else:
             latin_word = infinitive[:-2] + third_conjugation[tense][index]
     if conjugation == "mixed":
@@ -79,6 +88,11 @@ def verb_english_to_latin(word, person, number, tense):
             latin_word = perfect[:-1] + third_conjugation[tense][index]
         elif tense == "present":
             latin_word = infinitive[:-3] + third_conjugation[tense][index]
+        elif tense == "present passive":
+            if 0 < index < 5:
+                latin_word = nominative[:-2] + third_conjugation[tense][index]
+            else:
+                latin_word = nominative[:-1] + third_conjugation[tense][index]
         else:
             latin_word = nominative[:-1] + third_conjugation[tense][index]
     return latin_word, nominative
@@ -101,7 +115,8 @@ def get_verb_table(first_sing):
              "imperfect": {},
              "perfect": {},
              "pluperfect": {},
-             "future perfect": {}}
+             "future perfect": {},
+             'present passive': {}}
     for tense in list(table.keys()):
         for type in verb_types:
             person = type.split(" ")[0]
